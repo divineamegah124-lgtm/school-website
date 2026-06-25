@@ -1,0 +1,1140 @@
+/* ============================================================
+   PREMIUM.CSS
+   Visual enhancement layer for public pages only.
+   Loaded AFTER style.css — adds depth, refinement, and luxury
+   without overriding any structural or functional styles.
+   To disable: remove the <link> tag from each public page.
+   ============================================================ */
+
+/* ============================================================
+   PREMIUM COLOR PALETTE EXTENSIONS
+   Derived from the school's green/gold theme + logo-inspired
+   warm neutrals, deep forest tones, and champagne highlights.
+   ============================================================ */
+
+:root {
+  --premium-forest:      #0b3d1f;   /* Deep forest — richer than primary */
+  --premium-sage:        #2d6a4f;   /* Mid-green — warm, organic */
+  --premium-moss:        #52b788;   /* Light accent green — fresh */
+  --premium-gold:        #facc15;   /* Existing accent — kept */
+  --premium-gold-deep:   #d4a017;   /* Deeper gold — prestigious */
+  --premium-champagne:   #fdf6e3;   /* Warm cream — luxurious bg */
+  --premium-warm-white:  #fafaf8;   /* Off-white — softer than pure white */
+  --premium-charcoal:    #1a1a2e;   /* Deep navy-charcoal — rich dark text */
+  --premium-stone:       #6b7280;   /* Neutral stone grey */
+  --premium-border:      #e8e4dc;   /* Warm border tone */
+  --premium-shadow-sm:   0 2px 12px rgba(11,61,31,0.08);
+  --premium-shadow-md:   0 8px 32px rgba(11,61,31,0.12);
+  --premium-shadow-lg:   0 20px 60px rgba(11,61,31,0.16);
+  --premium-shadow-gold: 0 4px 20px rgba(212,160,23,0.25);
+  --premium-transition:  all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   TYPOGRAPHY REFINEMENTS
+   ============================================================ */
+
+body {
+  color: var(--premium-charcoal);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.01em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+p {
+  color: #374151;
+  line-height: 1.8;
+}
+
+/* ============================================================
+   NAVBAR — premium refinement
+   ============================================================ */
+
+.navbar {
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 var(--premium-border), var(--premium-shadow-sm);
+  border-bottom: 1px solid var(--premium-border);
+}
+
+.nav-container {
+  padding: 12px 32px;
+}
+
+.school-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--theme-primary), var(--premium-sage));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo img {
+  height: 44px;
+  width: 44px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #374151;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--theme-primary), var(--premium-gold-deep));
+  transition: width 0.3s ease;
+  border-radius: 1px;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: var(--theme-primary);
+}
+
+/* ============================================================
+   HERO SECTION — elevated, immersive
+   ============================================================ */
+
+.hero {
+  background: linear-gradient(
+    155deg,
+    var(--premium-forest) 0%,
+    var(--theme-primary) 40%,
+    var(--premium-sage) 100%
+  );
+  padding: 130px 20px 110px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle texture overlay */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(250,204,21,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Decorative bottom fade */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.08));
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-content h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.88);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  max-width: 560px;
+  margin: 0 auto 35px;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   BUTTONS — refined and premium
+   ============================================================ */
+
+.btn-primary {
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  box-shadow: var(--premium-shadow-gold);
+  transition: var(--premium-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(212,160,23,0.4);
+}
+
+/* Hero CTA button specific */
+.hero .btn-primary {
+  background: linear-gradient(135deg, var(--premium-gold), var(--premium-gold-deep));
+  color: var(--premium-forest);
+  font-size: 1rem;
+  padding: 16px 44px;
+}
+
+/* ============================================================
+   STATS SECTION — prestigious counter display
+   ============================================================ */
+
+.stats {
+  background: var(--premium-champagne);
+  padding: 72px 20px;
+  gap: 0;
+  border-top: 1px solid var(--premium-border);
+  border-bottom: 1px solid var(--premium-border);
+  position: relative;
+}
+
+.stats::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(20,83,45,0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.stat-item {
+  flex: 1;
+  min-width: 180px;
+  padding: 0 40px;
+  position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--premium-border), transparent);
+}
+
+.stat-item h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--theme-primary), var(--premium-sage));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-item p {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--premium-stone);
+}
+
+/* ============================================================
+   PAGE HEADERS — rich and immersive
+   ============================================================ */
+
+.page-header {
+  background: linear-gradient(
+    155deg,
+    var(--premium-forest) 0%,
+    var(--theme-primary) 50%,
+    var(--premium-sage) 100%
+  );
+  padding: 80px 20px 72px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(250,204,21,0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.page-header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.page-header p {
+  color: rgba(255,255,255,0.85);
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 1;
+  margin-top: 8px;
+}
+
+/* ============================================================
+   CONTENT SECTIONS — refined spacing and warmth
+   ============================================================ */
+
+.content-section {
+  padding: 80px 32px;
+  gap: 60px;
+}
+
+.content-section.alt-bg {
+  background: var(--premium-champagne);
+}
+
+.content-block h2 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 18px;
+  position: relative;
+  padding-bottom: 14px;
+}
+
+.content-block h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--premium-gold-deep), var(--premium-gold));
+  border-radius: 2px;
+}
+
+.content-block p {
+  font-size: 0.97rem;
+  line-height: 1.85;
+  color: #4b5563;
+}
+
+/* ============================================================
+   LEADER CARDS — prestigious portrait style
+   ============================================================ */
+
+.leader-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 24px;
+  box-shadow: var(--premium-shadow-sm);
+  border: 1px solid var(--premium-border);
+  transition: var(--premium-transition);
+  max-width: 240px;
+}
+
+.leader-card:hover {
+  box-shadow: var(--premium-shadow-md);
+  transform: translateY(-6px);
+  border-color: rgba(20,83,45,0.15);
+}
+
+.leader-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid var(--premium-champagne);
+  box-shadow: 0 0 0 2px var(--theme-primary), var(--premium-shadow-sm);
+  object-fit: cover;
+  margin-bottom: 18px;
+}
+
+.leader-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+
+.leader-card p {
+  font-size: 0.82rem;
+  color: var(--premium-stone);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ============================================================
+   FACILITY CARDS — deeper hover, richer overlay
+   ============================================================ */
+
+.facility-card {
+  border-radius: 12px;
+  box-shadow: var(--premium-shadow-sm);
+  transition: var(--premium-transition);
+  height: 260px;
+}
+
+.facility-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--premium-shadow-md);
+}
+
+.facility-card:hover img {
+  transform: scale(1.1);
+}
+
+.facility-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(11,61,31,0.92) 0%,
+    rgba(11,61,31,0.4) 60%,
+    transparent 100%
+  );
+  padding: 40px 18px 18px;
+}
+
+.facility-overlay h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+   EVENT CARDS — premium card design
+   ============================================================ */
+
+.event-card {
+  border-radius: 12px;
+  border: 1px solid var(--premium-border);
+  box-shadow: var(--premium-shadow-sm);
+  transition: var(--premium-transition);
+  overflow: hidden;
+}
+
+.event-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--premium-shadow-md);
+  border-color: rgba(20,83,45,0.2);
+}
+
+.event-card-image {
+  height: 220px;
+}
+
+.event-card-content {
+  padding: 22px 24px;
+}
+
+.event-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+   EVENTS STRIP CARDS — elevated
+   ============================================================ */
+
+.event-strip-card {
+  background: var(--premium-warm-white);
+  border: 1px solid var(--premium-border);
+  border-radius: 12px;
+  transition: var(--premium-transition);
+}
+
+.event-strip-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--premium-shadow-md);
+  border-color: rgba(20,83,45,0.15);
+}
+
+.event-strip-date {
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--theme-primary), var(--premium-sage));
+  box-shadow: var(--premium-shadow-sm);
+}
+
+.event-strip-day {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+/* ============================================================
+   STAFF CARDS — polished professional cards
+   ============================================================ */
+
+.staff-card {
+  border-radius: 14px;
+  border: 1px solid var(--premium-border);
+  box-shadow: var(--premium-shadow-sm);
+  transition: var(--premium-transition);
+  background: var(--premium-warm-white);
+}
+
+.staff-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--premium-shadow-md);
+  border-color: rgba(20,83,45,0.2);
+}
+
+.staff-card-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--theme-primary), var(--premium-sage));
+  box-shadow: var(--premium-shadow-sm);
+}
+
+.staff-card-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.staff-card-dept {
+  background: var(--premium-champagne);
+  color: var(--premium-forest);
+  border: 1px solid var(--premium-border);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  padding: 5px 14px;
+}
+
+/* ============================================================
+   DOWNLOAD CARDS — clean and distinguished
+   ============================================================ */
+
+.download-card {
+  border-radius: 12px;
+  border: 1px solid var(--premium-border);
+  background: var(--premium-warm-white);
+  box-shadow: var(--premium-shadow-sm);
+  transition: var(--premium-transition);
+  padding: 22px 28px;
+}
+
+.download-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--premium-shadow-md);
+  border-color: rgba(20,83,45,0.15);
+}
+
+.download-btn {
+  background: linear-gradient(135deg, var(--theme-primary), var(--premium-sage));
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  box-shadow: var(--premium-shadow-sm);
+  transition: var(--premium-transition);
+}
+
+.download-btn:hover {
+  box-shadow: var(--premium-shadow-md);
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+/* ============================================================
+   STEP CARDS (Admissions process) — refined
+   ============================================================ */
+
+.step-card {
+  border-radius: 12px;
+  border: 1px solid var(--premium-border);
+  box-shadow: var(--premium-shadow-sm);
+  transition: var(--premium-transition);
+  background: var(--premium-warm-white);
+}
+
+.step-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--premium-shadow-md);
+}
+
+.step-number {
+  background: linear-gradient(135deg, var(--theme-primary), var(--premium-sage));
+  width: 44px;
+  height: 44px;
+  font-size: 1rem;
+  box-shadow: var(--premium-shadow-sm);
+}
+
+/* ============================================================
+   ADMISSIONS INFO LIST — refined checkmarks
+   ============================================================ */
+
+.info-list li {
+  padding: 14px 0 14px 36px;
+  border-bottom: 1px solid var(--premium-border);
+  color: #374151;
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
+}
+
+.info-list li:hover {
+  background: var(--premium-champagne);
+}
+.info-list li::before {
+  content: "✓";
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, var(--theme-primary), var(--premium-sage));
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  left: 0;
+  top: 14px;
+}
+
+/* ============================================================
+   FEES TABLE — distinguished table design
+   ============================================================ */
+
+.fees-table {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--premium-shadow-sm);
+  border: 1px solid var(--premium-border);
+}
+
+.fees-table th {
+  background: linear-gradient(135deg, var(--premium-forest), var(--theme-primary));
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 16px 18px;
+}
+
+.fees-table td {
+  padding: 14px 18px;
+  font-size: 0.92rem;
+  color: #374151;
+  border-bottom: 1px solid var(--premium-border);
+}
+
+.fees-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.fees-table tbody tr:hover {
+  background: var(--premium-champagne);
+}
+
+/* ============================================================
+   CONTACT FORM — polished inputs
+   ============================================================ */
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  border: 1.5px solid var(--premium-border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.92rem;
+  background: var(--premium-warm-white);
+  transition: var(--premium-transition);
+  color: var(--premium-charcoal);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: var(--theme-primary);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(20,83,45,0.08);
+}
+
+.contact-form label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--premium-forest);
+  margin-top: 14px;
+}
+
+/* ============================================================
+   MAP CONTAINER — premium frame
+   ============================================================ */
+
+.map-container {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--premium-shadow-md);
+  border: 1px solid var(--premium-border);
+  margin-top: 20px;
+}
+
+/* ============================================================
+   PRIVACY NOTE — warm and refined
+   ============================================================ */
+
+.privacy-note {
+  background: linear-gradient(135deg, #fefce8, var(--premium-champagne));
+  border-left: 4px solid var(--premium-gold-deep);
+  border-radius: 0 10px 10px 0;
+  box-shadow: var(--premium-shadow-sm);
+}
+
+/* ============================================================
+   MAGAZINE GRID — refined media cards
+   ============================================================ */
+
+.magazine-item {
+  border-radius: 12px;
+  box-shadow: var(--premium-shadow-sm);
+  transition: var(--premium-transition);
+  height: 220px;
+}
+
+.magazine-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--premium-shadow-md);
+}
+
+.magazine-item:hover img {
+  transform: scale(1.1);
+}
+
+.magazine-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(11,61,31,0.9) 0%,
+    rgba(11,61,31,0.3) 60%,
+    transparent 100%
+  );
+  padding: 32px 14px 14px;
+}
+
+.magazine-overlay h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* ============================================================
+   ANNOUNCEMENTS STRIP — premium news ticker feel
+   ============================================================ */
+
+.announcements-strip {
+  background: linear-gradient(135deg, var(--premium-champagne), #fff);
+  border-top: 1px solid var(--premium-border);
+  border-bottom: 1px solid var(--premium-border);
+  padding: 20px 32px;
+}
+
+.announcements-strip-label {
+  background: linear-gradient(135deg, var(--premium-forest), var(--theme-primary));
+  border-radius: 4px;
+  letter-spacing: 0.08em;
+  padding: 5px 14px;
+  font-size: 0.7rem;
+  box-shadow: var(--premium-shadow-sm);
+}
+
+.announcement-strip-dot {
+  width: 7px;
+  height: 7px;
+  background: linear-gradient(135deg, var(--premium-gold-deep), var(--premium-gold));
+  box-shadow: 0 0 6px rgba(212,160,23,0.4);
+}
+
+.announcement-strip-title {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 0.88rem;
+}
+
+/* ============================================================
+   EVENTS STRIP SECTION — refined heading
+   ============================================================ */
+
+.events-strip {
+  padding: 80px 32px;
+  background: var(--premium-warm-white);
+}
+
+.events-strip-heading h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  position: relative;
+  padding-bottom: 14px;
+}
+
+.events-strip-heading h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--premium-gold-deep), var(--premium-gold));
+  border-radius: 2px;
+}
+
+.events-strip-viewall {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--theme-primary);
+  border-bottom: 1.5px solid var(--premium-gold-deep);
+  padding-bottom: 2px;
+  transition: color 0.2s ease;
+}
+
+.events-strip-viewall:hover {
+  color: var(--premium-gold-deep);
+  text-decoration: none;
+}
+
+/* ============================================================
+   ADMISSIONS BANNER — polished status bar
+   ============================================================ */
+
+.admissions-banner {
+  padding: 12px 32px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.admissions-banner.banner-open {
+  background: linear-gradient(135deg, var(--premium-forest), var(--theme-primary));
+  box-shadow: 0 2px 8px rgba(11,61,31,0.2);
+}
+
+.admissions-banner.banner-closed {
+  background: linear-gradient(135deg, #6b1717, #7f1d1d);
+}
+
+.admissions-banner-link {
+  border-radius: 4px;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  padding: 5px 16px;
+  transition: var(--premium-transition);
+  border-color: var(--premium-gold);
+}
+
+.admissions-banner-link:hover {
+  background: var(--premium-gold-deep);
+  border-color: var(--premium-gold-deep);
+  color: var(--premium-forest);
+  box-shadow: var(--premium-shadow-gold);
+}
+
+/* ============================================================
+   FLOATING COUNTDOWN WIDGET — premium glass card
+   ============================================================ */
+
+.floating-countdown-widget {
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--premium-border);
+  border-radius: 14px;
+  box-shadow: var(--premium-shadow-md);
+  padding: 18px 18px 16px;
+}
+
+.countdown-widget-timer {
+  background: var(--premium-champagne);
+  border: 1px solid var(--premium-border);
+  border-radius: 8px;
+}
+
+.countdown-val {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--theme-primary), var(--premium-sage));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Poppins', sans-serif;
+}
+
+.countdown-widget-cta {
+  background: linear-gradient(135deg, var(--theme-primary), var(--premium-sage));
+  border-radius: 8px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  box-shadow: var(--premium-shadow-sm);
+  transition: var(--premium-transition);
+  border: none;
+}
+
+.countdown-widget-cta:hover {
+  background: linear-gradient(135deg, var(--premium-forest), var(--theme-primary));
+  box-shadow: var(--premium-shadow-md);
+  transform: translateY(-1px);
+}
+
+.countdown-widget-label {
+  letter-spacing: 0.08em;
+  color: var(--premium-stone);
+}
+
+/* ============================================================
+   FOOTER — rich and layered
+   ============================================================ */
+
+.footer {
+  background: linear-gradient(
+    155deg,
+    var(--premium-forest) 0%,
+    var(--theme-primary) 60%,
+    var(--premium-sage) 100%
+  );
+  padding: 60px 32px 0;
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 10% 0%, rgba(250,204,21,0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.footer-content {
+  gap: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-col h3 {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-col a {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 10px;
+  letter-spacing: 0.01em;
+  transition: var(--premium-transition);
+}
+
+.footer-col a:hover {
+  color: var(--premium-gold);
+  padding-left: 4px;
+}
+
+.footer-col p {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.8;
+  margin-bottom: 6px;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top: 40px;
+  padding: 18px 0;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.02em;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   DARK MODE TOGGLE — premium pill style
+   ============================================================ */
+
+.dark-mode-toggle {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--theme-primary), var(--premium-sage));
+  box-shadow: var(--premium-shadow-md);
+  border-radius: 50%;
+  transition: var(--premium-transition);
+}
+
+.dark-mode-toggle:hover {
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: var(--premium-shadow-lg);
+}
+
+/* ============================================================
+   DARK MODE PREMIUM OVERRIDES
+   Ensure premium colours work correctly in dark mode
+   ============================================================ */
+
+body.dark-mode .stats {
+  background: #111827;
+}
+
+body.dark-mode .content-section.alt-bg {
+  background: #1a2332;
+}
+
+body.dark-mode .events-strip {
+  background: #111827;
+}
+
+body.dark-mode .announcements-strip {
+  background: linear-gradient(135deg, #1a2332, #1f2937);
+}
+
+body.dark-mode .floating-countdown-widget {
+  background: rgba(31,41,55,0.97);
+  border-color: #374151;
+}
+
+body.dark-mode .countdown-widget-timer {
+  background: #111827;
+  border-color: #374151;
+}
+
+body.dark-mode .leader-card,
+body.dark-mode .step-card,
+body.dark-mode .download-card {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+body.dark-mode .contact-form input,
+body.dark-mode .contact-form select,
+body.dark-mode .contact-form textarea {
+  background: #374151;
+  border-color: #4b5563;
+  color: #e5e7eb;
+}
+
+body.dark-mode .info-list li:hover {
+  background: #1f2937;
+}
+
+body.dark-mode .fees-table tbody tr:hover {
+  background: #1f2937;
+}
+
+body.dark-mode .content-block p {
+  color: #9ca3af;
+}
+
+body.dark-mode p {
+  color: #9ca3af;
+}
+
+/* ============================================================
+   RESPONSIVE PREMIUM ADJUSTMENTS
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 90px 20px 80px;
+  }
+
+  .hero-content h1 {
+    font-size: 1.9rem;
+  }
+
+  .stats {
+    padding: 48px 20px;
+    gap: 32px;
+  }
+
+  .stat-item:not(:last-child)::after {
+    display: none;
+  }
+
+  .stat-item {
+    padding: 0 20px;
+  }
+
+  .stat-item h2 {
+    font-size: 2.2rem;
+  }
+
+  .content-section {
+    padding: 56px 20px;
+    gap: 36px;
+  }
+
+  .events-strip {
+    padding: 56px 20px;
+  }
+
+  .footer {
+    padding: 48px 20px 0;
+  }
+
+  .nav-container {
+    padding: 12px 20px;
+  }
+
+  .leader-card {
+    max-width: 200px;
+    padding: 24px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.6rem;
+  }
+
+  .btn-primary {
+    padding: 13px 28px;
+    font-size: 0.88rem;
+  }
+}

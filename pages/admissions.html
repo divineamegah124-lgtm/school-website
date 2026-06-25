@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admissions - Example Secondary School</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/premium.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="/images/logo-placeholder.png" alt="School Logo" />
+        <span class="school-name">Example Secondary School</span>
+      </div>
+      <nav class="nav-links" id="navLinks">
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/admissions.html">Admissions</a>
+        <a href="/facilities.html">Facilities</a>
+        <a href="/magazine.html">Magazine</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/feedback.html">Feedback</a>
+      </nav>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header with Status Badge -->
+  <section class="page-header">
+    <h1>Admissions</h1>
+    <p>Begin your journey with us — find out how to apply and what you need</p>
+    <div style="margin-top:20px;">
+      <span class="status-badge" id="admissionsStatusBadge"
+        style="background:#f0fdf4; color:#16a34a; border:1px solid #86efac;">
+        Open
+      </span>
+      <span id="admissionsDeadlineText"
+        style="margin-left:16px; color:#fff; font-size:0.95rem;">
+      </span>
+    </div>
+  </section>
+
+  <!-- Admission Requirements -->
+  <section class="content-section">
+    <div class="content-block full-width">
+      <h2>Admission Requirements</h2>
+      <ul class="info-list" id="requirementsList">
+        <li>Completed application form</li>
+        <li>Birth certificate (original and copy)</li>
+        <li>Previous school report card or transcript</li>
+        <li>Two passport-sized photographs</li>
+        <li>Transfer letter (for transferring students)</li>
+        <li>Completed medical form</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Application Process — editable from admin -->
+  <section class="content-section alt-bg">
+    <div class="content-block full-width">
+      <h2>Application Process</h2>
+      <div class="process-steps" id="processSteps">
+        <!-- Default steps shown until admin saves custom ones -->
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Submit Application</h3>
+          <p>Complete and submit the application form along with required documents.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Entrance Assessment</h3>
+          <p>Eligible candidates will be invited for an entrance assessment and interview.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Admission Offer</h3>
+          <p>Successful candidates receive an admission offer letter with enrollment details.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3>Enrollment</h3>
+          <p>Complete enrollment by paying fees and submitting final documents.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fees Structure -->
+  <section class="content-section">
+    <div class="content-block full-width">
+      <h2>Fees Structure</h2>
+      <table class="fees-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Amount (GHS)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tuition Fee (per term)</td>
+            <td id="tuitionFeeCell">Contact office for details</td>
+          </tr>
+          <tr>
+            <td>Admission Fee (one-time)</td>
+            <td id="admissionFeeCell">Contact office for details</td>
+          </tr>
+          <tr>
+            <td>Boarding Fee (per term, optional)</td>
+            <td id="boardingFeeCell">Contact office for details</td>
+          </tr>
+          <tr>
+            <td>Books and Materials</td>
+            <td id="booksMaterielsCell">Contact office for details</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note" id="feesNote">
+        Fees are subject to change. Please contact the admissions office for
+        the most current fee structure.
+      </p>
+    </div>
+  </section>
+
+  <!-- Download Form CTA -->
+  <section class="content-section alt-bg">
+    <div class="content-block full-width cta-block">
+      <h2>Ready to Apply?</h2>
+      <p>Download our application form or contact the admissions office for more information.</p>
+      <!-- This button downloads the form uploaded by admin. Hidden if no form uploaded. -->
+      <a id="downloadFormBtn" href="#" class="btn-primary" style="display:none;">
+        Download Application Form
+      </a>
+      <p id="noFormMsg" style="color:#9ca3af; font-size:0.9rem; margin-top:10px;">
+        Application form will be available here soon.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>Example Secondary School</h3>
+        <p>Address: 123 School Road, Accra, Ghana</p>
+        <p>Phone: +233 000 000 000</p>
+        <p>Email: info@exampleschool.edu.gh</p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="/about.html">About Us</a>
+        <a href="/admissions.html">Admissions</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/feedback.html">Student & Parent Feedback</a>
+        <a href="/events.html">Events</a>
+        <a href="/staff.html">Staff Directory</a>
+      </div>
+      <div class="footer-col">
+        <h3>Follow Us</h3>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter/X</a>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Example Secondary School. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/theme-loader.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/admissions-page.js"></script>
+</body>
+</html>

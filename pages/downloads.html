@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notices & Downloads - Example Secondary School</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/premium.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="/images/logo-placeholder.png" alt="School Logo" />
+        <span class="school-name">Example Secondary School</span>
+      </div>
+      <nav class="nav-links" id="navLinks">
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/admissions.html">Admissions</a>
+        <a href="/facilities.html">Facilities</a>
+        <a href="/magazine.html">Magazine</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/feedback.html">Feedback</a>
+      </nav>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <h1>Notices & Downloads</h1>
+    <p>School announcements, documents, timetables, forms, and circulars</p>
+  </section>
+
+  <!-- ANNOUNCEMENTS SECTION -->
+  <section class="content-section" style="padding-bottom:0;">
+    <div class="content-block full-width">
+      <h2 style="color:var(--theme-primary); margin-bottom:20px;">
+        Latest Announcements
+      </h2>
+      <div id="announcementsSection">
+        <p style="color:#9ca3af; font-size:0.95rem;">
+          No announcements yet.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCUMENTS SECTION -->
+  <section class="content-section">
+    <div class="content-block full-width">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
+        <h2 style="color:var(--theme-primary); margin:0;">Documents & Downloads</h2>
+        <div class="magazine-filters" style="margin-bottom:0;">
+          <label>Filter:</label>
+          <select id="downloadsFilter">
+            <option value="all">All Categories</option>
+            <option value="Timetable">Timetable</option>
+            <option value="Results">Examination Results</option>
+            <option value="Forms">Application Forms</option>
+            <option value="Prospectus">Prospectus</option>
+            <option value="Circular">School Circular</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="downloads-grid" id="downloadsGrid">
+        <p style="color:#9ca3af; font-size:0.95rem;">
+          No documents available yet. Check back soon.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>Example Secondary School</h3>
+        <p>Address: 123 School Road, Accra, Ghana</p>
+        <p>Phone: +233 000 000 000</p>
+        <p>Email: info@exampleschool.edu.gh</p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="/about.html">About Us</a>
+        <a href="/admissions.html">Admissions</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/feedback.html">Student & Parent Feedback</a>
+        <a href="/events.html">Events</a>
+        <a href="/staff.html">Staff Directory</a>
+        <a href="/downloads.html">Notices & Downloads</a>
+      </div>
+      <div class="footer-col">
+        <h3>Follow Us</h3>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter/X</a>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Example Secondary School. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/theme-loader.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/downloads-page.js"></script>
+</body>
+</html>

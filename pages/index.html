@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example Secondary School</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/premium.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Floating Countdown Widget -->
+  <div class="floating-countdown-widget" id="floatingCountdownWidget" style="display:none;">
+    <div class="countdown-widget-header">
+      <span class="countdown-widget-label">Next Event</span>
+    </div>
+    <div class="countdown-widget-title" id="widgetEventTitle">Event</div>
+    <div class="countdown-widget-timer">
+      <div class="countdown-column">
+        <div class="countdown-val" id="widgetDays">00</div>
+        <div class="countdown-lbl">Days</div>
+      </div>
+      <div class="countdown-column">
+        <div class="countdown-val" id="widgetHours">00</div>
+        <div class="countdown-lbl">Hours</div>
+      </div>
+      <div class="countdown-column">
+        <div class="countdown-val" id="widgetMinutes">00</div>
+        <div class="countdown-lbl">Mins</div>
+      </div>
+      <div class="countdown-column">
+        <div class="countdown-val" id="widgetSeconds">00</div>
+        <div class="countdown-lbl">Secs</div>
+      </div>
+    </div>
+    <a href="/events.html" class="countdown-widget-cta">View Event</a>
+  </div>
+
+  <!-- ADMISSIONS STATUS BANNER -->
+  <div class="admissions-banner" id="admissionsBanner" style="display:none;">
+    <span id="admissionsBannerText"></span>
+    <a href="/admissions.html" class="admissions-banner-link">Apply Now &rarr;</a>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="/images/logo-placeholder.png" alt="School Logo" />
+        <span class="school-name">Example Secondary School</span>
+      </div>
+      <nav class="nav-links" id="navLinks">
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/admissions.html">Admissions</a>
+        <a href="/facilities.html">Facilities</a>
+        <a href="/magazine.html">Magazine</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/feedback.html">Feedback</a>
+      </nav>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Example Secondary School</h1>
+      <p>Excellence in Education, Character, and Service</p>
+      <a href="/admissions.html" class="btn-primary">Apply Now</a>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="stat-item">
+      <h2 class="counter" data-target="1200">0</h2>
+      <p>Students Enrolled</p>
+    </div>
+    <div class="stat-item">
+      <h2 class="counter" data-target="45">0</h2>
+      <p>Qualified Teachers</p>
+    </div>
+    <div class="stat-item">
+      <h2 class="counter" data-target="15">0</h2>
+      <p>Years of Excellence</p>
+    </div>
+  </section>
+
+  <!-- LATEST ANNOUNCEMENTS STRIP -->
+  <section class="announcements-strip" id="announcementsStrip" style="display:none;">
+    <div class="announcements-strip-inner">
+      <div class="announcements-strip-label">Latest News</div>
+      <div class="announcements-strip-items" id="announcementsStripItems"></div>
+      <a href="#" class="announcements-strip-more">View All</a>
+    </div>
+  </section>
+
+  <!-- UPCOMING EVENTS STRIP -->
+  <section class="events-strip" id="eventsStrip" style="display:none;">
+    <div class="events-strip-inner">
+      <div class="events-strip-heading">
+        <h2>Upcoming Events</h2>
+        <a href="/events.html" class="events-strip-viewall">View All Events &rarr;</a>
+      </div>
+      <div class="events-strip-cards" id="eventsStripCards"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>Example Secondary School</h3>
+        <p>Address: 123 School Road, Accra, Ghana</p>
+        <p>Phone: +233 000 000 000</p>
+        <p>Email: info@exampleschool.edu.gh</p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="/about.html">About Us</a>
+        <a href="/admissions.html">Admissions</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/feedback.html">Student & Parent Feedback</a>
+        <a href="/events.html">Events</a>
+        <a href="/staff.html">Staff Directory</a>
+      </div>
+      <div class="footer-col">
+        <h3>Follow Us</h3>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter/X</a>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Example Secondary School. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/theme-loader.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/homepage-features.js"></script>
+  <script src="/js/demo-images.js"></script>
+</body>
+</html>

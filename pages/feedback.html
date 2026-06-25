@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feedback - Example Secondary School</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/premium.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="/images/logo-placeholder.png" alt="School Logo" />
+        <span class="school-name">Example Secondary School</span>
+      </div>
+      <nav class="nav-links" id="navLinks">
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/admissions.html">Admissions</a>
+        <a href="/facilities.html">Facilities</a>
+        <a href="/magazine.html">Magazine</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/feedback.html">Feedback</a>
+      </nav>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <h1>Student & Parent Feedback</h1>
+    <p>Share your concerns, suggestions, or reports privately with the school administration</p>
+  </section>
+
+  <!-- Feedback Form -->
+  <section class="content-section">
+    <div class="content-block full-width">
+      <div class="privacy-note">
+        <strong>Privacy Note:</strong> This feedback is sent directly and privately to the school administration. It will not be displayed publicly on this website.
+      </div>
+
+      <form class="contact-form feedback-form" id="feedbackForm">
+        <label for="fbName">Your Name</label>
+        <input type="text" id="fbName" name="name" required />
+
+        <label for="fbRole">I am a</label>
+        <select id="fbRole" name="role" required>
+          <option value="">Select an option</option>
+          <option value="parent">Parent / Guardian</option>
+          <option value="student">Student</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="fbEmail">Email (optional)</label>
+        <input type="email" id="fbEmail" name="email" />
+
+        <label for="fbCategory">Category</label>
+        <select id="fbCategory" name="category" required>
+          <option value="">Select an option</option>
+          <option value="academic">Academic Concern</option>
+          <option value="facility">Facility Issue</option>
+          <option value="conduct">Conduct / Behavior Concern</option>
+          <option value="general">General Feedback</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="fbMessage">Your Message</label>
+        <textarea id="fbMessage" name="message" rows="6" required placeholder="Describe your concern, report, or suggestion in detail..."></textarea>
+
+        <button type="submit" class="btn-primary">Submit Privately</button>
+        <p class="form-status" id="feedbackStatus"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>Example Secondary School</h3>
+        <p>Address: 123 School Road, Accra, Ghana</p>
+        <p>Phone: +233 000 000 000</p>
+        <p>Email: info@exampleschool.edu.gh</p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="/about.html">About Us</a>
+        <a href="/admissions.html">Admissions</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/feedback.html">Student & Parent Feedback</a>
+        <a href="/events.html">Events</a>
+        <a href="/staff.html">Staff Directory</a>
+      </div>
+      <div class="footer-col">
+        <h3>Follow Us</h3>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter/X</a>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Example Secondary School. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/theme-loader.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

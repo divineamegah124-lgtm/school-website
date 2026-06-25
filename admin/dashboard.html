@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Example Secondary School</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/admin-premium.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Dashboard Top Bar -->
+  <header class="dashboard-topbar">
+    <div class="dashboard-logo">
+      <img src="/images/logo-placeholder.png" alt="School Logo" />
+      <span>Example Secondary School — Admin</span>
+    </div>
+    <div class="dashboard-actions">
+      <a href="/index.html" target="_blank">View Website</a>
+      <a href="#" id="logoutBtn">Logout</a>
+    </div>
+  </header>
+
+  <div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <nav class="dashboard-sidebar">
+      <button class="dashboard-tab active" data-tab="announcements">Announcements</button>
+      <button class="dashboard-tab" data-tab="facilities">Facilities</button>
+      <button class="dashboard-tab" data-tab="feedback">Feedback</button>
+      <button class="dashboard-tab" data-tab="drive">Google Drive</button>
+      <button class="dashboard-tab" data-tab="events">Events</button>
+      <button class="dashboard-tab" data-tab="staff">Staff Directory</button>
+      <button class="dashboard-tab" data-tab="admissions">Admissions Control</button>
+      <button class="dashboard-tab" data-tab="notices">Notices & Downloads</button>
+      <button class="dashboard-tab" data-tab="settings">School Settings</button>
+    </nav>
+
+    <main class="dashboard-content">
+
+      <!-- TAB 1: ANNOUNCEMENTS -->
+      <section class="dashboard-panel active" id="panel-announcements">
+        <div class="panel-header">
+          <h2>Announcements</h2>
+          <button class="btn-primary" id="newAnnouncementBtn">+ New Announcement</button>
+        </div>
+        <div class="dashboard-form-card" id="announcementForm" style="display:none;">
+          <h3>Create Announcement</h3>
+          <form class="contact-form" id="announcementFormFields">
+            <label for="annTitle">Title</label>
+            <input type="text" id="annTitle" name="title" required />
+            <label for="annBody">Body</label>
+            <textarea id="annBody" name="body" rows="4" required></textarea>
+            <label for="annImage">Image (optional)</label>
+            <input type="file" id="annImage" name="image" accept="image/*" />
+            <label for="annDate">Publish Date</label>
+            <input type="date" id="annDate" name="publishDate" required />
+            <div class="form-buttons">
+              <button type="submit" class="btn-primary">Save Announcement</button>
+              <button type="button" class="btn-secondary" id="cancelAnnouncementBtn">Cancel</button>
+            </div>
+          </form>
+        </div>
+        <div class="dashboard-list" id="announcementsList">
+          <div class="dashboard-list-item">
+            <div class="list-item-info">
+              <h4>Sample Announcement: Mid-Term Break</h4>
+              <p>School will be on mid-term break from June 20 to June 25.</p>
+              <span class="list-item-date">Published: June 10, 2026</span>
+            </div>
+            <div class="list-item-actions">
+              <button class="btn-edit">Edit</button>
+              <button class="btn-delete">Delete</button>
+            </div>
+          </div>
+          <div class="dashboard-list-item">
+            <div class="list-item-info">
+              <h4>Sample Announcement: PTA Meeting</h4>
+              <p>Parent-Teacher Association meeting scheduled for next Saturday at 10 AM.</p>
+              <span class="list-item-date">Published: June 5, 2026</span>
+            </div>
+            <div class="list-item-actions">
+              <button class="btn-edit">Edit</button>
+              <button class="btn-delete">Delete</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: FACILITIES -->
+      <section class="dashboard-panel" id="panel-facilities">
+        <div class="panel-header">
+          <h2>Facilities</h2>
+          <button class="btn-primary" id="newFacilityBtn">+ New Facility</button>
+        </div>
+        <div class="dashboard-form-card" id="facilityForm" style="display:none;">
+          <h3>Add Facility</h3>
+          <form class="contact-form" id="facilityFormFields">
+            <label for="facName">Facility Name</label>
+            <input type="text" id="facName" name="name" required />
+            <label for="facDescription">Description</label>
+            <textarea id="facDescription" name="description" rows="3" required></textarea>
+            <label for="facCover">Cover Image</label>
+            <input type="file" id="facCover" name="coverImage" accept="image/*" />
+            <label for="facPhotos">Gallery Photos (up to 10)</label>
+            <input type="file" id="facPhotos" name="photos" accept="image/*" multiple />
+            <div class="form-buttons">
+              <button type="submit" class="btn-primary">Save Facility</button>
+              <button type="button" class="btn-secondary" id="cancelFacilityBtn">Cancel</button>
+            </div>
+          </form>
+        </div>
+        <div class="dashboard-list" id="facilitiesList">
+          <div class="dashboard-list-item">
+            <div class="list-item-info">
+              <h4>Library</h4>
+              <p>Main library building with reading halls and study rooms.</p>
+              <span class="list-item-date">5 photos uploaded</span>
+            </div>
+            <div class="list-item-actions">
+              <button class="btn-edit">Edit</button>
+              <button class="btn-delete">Delete</button>
+            </div>
+          </div>
+          <div class="dashboard-list-item">
+            <div class="list-item-info">
+              <h4>Science Laboratory</h4>
+              <p>Fully equipped laboratory for chemistry, biology, and physics.</p>
+              <span class="list-item-date">5 photos uploaded</span>
+            </div>
+            <div class="list-item-actions">
+              <button class="btn-edit">Edit</button>
+              <button class="btn-delete">Delete</button>
+            </div>
+          </div>
+          <div class="dashboard-list-item">
+            <div class="list-item-info">
+              <h4>Sports Field</h4>
+              <p>Multi-purpose sports field for football, athletics, and events.</p>
+              <span class="list-item-date">5 photos uploaded</span>
+            </div>
+            <div class="list-item-actions">
+              <button class="btn-edit">Edit</button>
+              <button class="btn-delete">Delete</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: FEEDBACK & MESSAGES -->
+      <section class="dashboard-panel" id="panel-feedback">
+        <div class="panel-header">
+          <h2>Feedback & Messages</h2>
+        </div>
+        <div class="settings-nav" style="margin-bottom:20px;">
+          <button type="button" class="settings-nav-btn active" id="feedbackSubBtn">Feedback</button>
+          <button type="button" class="settings-nav-btn" id="messagesSubBtn">Messages</button>
+        </div>
+
+        <!-- Feedback sub-section -->
+        <div id="feedbackSubSection">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <label style="font-size:0.78rem; font-weight:600; color:#374151;
+                          text-transform:uppercase; letter-spacing:0.3px;">Filter:</label>
+            <select class="feedback-filter" id="feedbackStatusFilter">
+              <option value="all">All Status</option>
+              <option value="unresolved">Unresolved</option>
+              <option value="resolved">Resolved</option>
+            </select>
+          </div>
+          <div class="dashboard-list" id="feedbackList">
+            <div class="dashboard-list-item feedback-item" data-status="unresolved">
+              <div class="list-item-info">
+                <h4>Parent Report &mdash; Facility Issue <span class="status-badge unresolved">Unresolved</span></h4>
+                <p>The water dispenser in the dining hall has been broken for two weeks.</p>
+                <span class="list-item-date">Submitted: June 15, 2026 &bull; Name: Mrs. Adjei &bull; Email: not provided</span>
+              </div>
+              <div class="list-item-actions">
+                <button class="btn-edit mark-resolved-btn">Mark Resolved</button>
+                <button class="btn-delete">Delete</button>
+              </div>
+            </div>
+            <div class="dashboard-list-item feedback-item" data-status="unresolved">
+              <div class="list-item-info">
+                <h4>Student Report &mdash; Academic Concern <span class="status-badge unresolved">Unresolved</span></h4>
+                <p>I am struggling to keep up in Mathematics class and would like extra help.</p>
+                <span class="list-item-date">Submitted: June 12, 2026 &bull; Name: Anonymous &bull; Email: student123@email.com</span>
+              </div>
+              <div class="list-item-actions">
+                <button class="btn-edit mark-resolved-btn">Mark Resolved</button>
+                <button class="btn-delete">Delete</button>
+              </div>
+            </div>
+            <div class="dashboard-list-item feedback-item" data-status="resolved">
+              <div class="list-item-info">
+                <h4>Parent Report &mdash; General Feedback <span class="status-badge resolved">Resolved</span></h4>
+                <p>Just wanted to commend the teaching staff for the recent sports day.</p>
+                <span class="list-item-date">Submitted: June 8, 2026 &bull; Name: Mr. Owusu &bull; Email: owusu@email.com</span>
+              </div>
+              <div class="list-item-actions">
+                <button class="btn-delete">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Messages sub-section -->
+        <div id="messagesSubSection" style="display:none;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <label style="font-size:0.78rem; font-weight:600; color:#374151;
+                          text-transform:uppercase; letter-spacing:0.3px;">Filter:</label>
+            <select class="feedback-filter" id="messagesReadFilter">
+              <option value="all">All Messages</option>
+              <option value="unread">Unread</option>
+              <option value="read">Read</option>
+            </select>
+          </div>
+          <div class="dashboard-list" id="messagesList">
+            <div style="padding:20px; text-align:center; color:#9ca3af; font-size:0.85rem;">
+              No messages yet. Messages sent via the Contact page will appear here.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: GOOGLE DRIVE -->
+      <section class="dashboard-panel" id="panel-drive">
+        <div class="panel-header">
+          <h2>Google Drive Connection</h2>
+        </div>
+        <div class="dashboard-form-card">
+          <h3>Connection Status</h3>
+          <div class="drive-status-row">
+            <span class="status-badge unresolved" id="driveStatusBadge">Not Connected</span>
+            <button class="btn-primary" id="connectDriveBtn">Connect Google Drive</button>
+          </div>
+          <p class="drive-help-text">Connect the school's Google Drive account to automatically display photos and videos on the Magazine page.</p>
+        </div>
+        <div class="dashboard-form-card">
+          <h3>Drive Folder Settings</h3>
+          <form class="contact-form" id="driveFolderForm">
+            <label for="driveFolderId">Magazine Root Folder ID or Link</label>
+            <input type="text" id="driveFolderId" name="folderId" placeholder="Paste Google Drive folder link here" />
+            <div class="form-buttons">
+              <button type="submit" class="btn-primary">Save Folder Settings</button>
+              <button type="button" class="btn-secondary" id="testDriveConnectionBtn">Test Connection</button>
+            </div>
+            <p class="form-status" id="driveFormStatus"></p>
+          </form>
+        </div>
+        <div class="dashboard-form-card">
+          <h3>Folder Structure Guide</h3>
+          <ul class="info-list">
+            <li>Create a main folder for the Magazine (e.g. "School Magazine")</li>
+            <li>Inside it, create a folder for each year (e.g. "2026", "2025")</li>
+            <li>Inside each year folder, create a folder per event (e.g. "Sports Day", "Graduation")</li>
+            <li>Upload photos and videos directly into the event folders</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- TAB 5: EVENTS -->
+      <section class="dashboard-panel" id="panel-events">
+        <div class="panel-header">
+          <h2>Events & Calendar</h2>
+          <button class="btn-primary" id="newEventBtn">+ New Event</button>
+        </div>
+        <div class="dashboard-form-card" id="eventForm" style="display:none;">
+          <h3>Create Event</h3>
+          <form class="contact-form" id="eventFormFields">
+            <label for="eventTitle">Event Title</label>
+            <input type="text" id="eventTitle" name="title" placeholder="e.g. Annual Sports Day" required />
+            <label for="eventDate">Event Date</label>
+            <input type="date" id="eventDate" name="date" required />
+            <label for="eventDescription">Event Description</label>
+            <textarea id="eventDescription" name="description" rows="4" placeholder="Describe the event..." required></textarea>
+            <label for="eventImage">Event Image (optional)</label>
+            <input type="file" id="eventImage" name="image" accept="image/*" />
+            <label class="event-checkbox-label">
+              <input type="checkbox" id="eventFeatured" name="featured" />
+              Mark as Featured Event (shows countdown on homepage)
+            </label>
+            <div class="form-buttons">
+              <button type="submit" class="btn-primary">Save Event</button>
+              <button type="button" class="btn-secondary" id="cancelEventBtn">Cancel</button>
+            </div>
+          </form>
+        </div>
+        <div class="dashboard-list" id="eventsList"></div>
+      </section>
+
+      <!-- TAB 6: STAFF DIRECTORY -->
+      <section class="dashboard-panel" id="panel-staff">
+        <div class="panel-header">
+          <h2>Staff Directory</h2>
+          <button class="btn-primary" id="newStaffBtn">+ Add Staff</button>
+        </div>
+        <div class="dashboard-form-card" id="staffForm" style="display:none;">
+          <h3>Add Staff Member</h3>
+          <form class="contact-form" id="staffFormFields">
+            <label for="staffName">Full Name</label>
+            <input type="text" id="staffName" name="name" placeholder="e.g. Mr. John Mensah" required />
+            <label for="staffRole">Role / Position</label>
+            <input type="text" id="staffRole" name="role" placeholder="e.g. Mathematics Teacher" required />
+            <label for="staffDepartment">Department</label>
+            <select id="staffDepartment" name="department" required>
+              <option value="">Select a department</option>
+            </select>
+            <div id="newDeptInlineRow" style="display:none; gap:8px; align-items:center; margin-top:6px;">
+              <input type="text" id="newDeptInlineInput" placeholder="Type new department name"
+                style="flex:1; padding:8px 12px; border:1px solid #d1d5db; border-radius:2px;
+                       font-size:0.85rem; font-family:'Poppins',sans-serif;" />
+              <button type="button" class="btn-primary" id="confirmNewDeptBtn"
+                style="padding:8px 16px; font-size:0.8rem;">Add</button>
+              <button type="button" class="btn-secondary" id="cancelNewDeptBtn"
+                style="padding:8px 14px; font-size:0.8rem;">Cancel</button>
+            </div>
+            <div class="form-buttons" style="margin-top:20px; gap:8px;">
+              <button type="button" class="btn-primary" id="saveAndAddStaffBtn">Save &amp; Add Another</button>
+              <button type="button" class="btn-primary" id="saveStaffBtn">Save</button>
+              <button type="button" class="btn-secondary" id="cancelStaffBtn">Cancel</button>
+            </div>
+            <p class="form-status" id="staffFormStatus"></p>
+          </form>
+        </div>
+        <div class="dashboard-form-card">
+          <div style="display:flex; justify-content:space-between; align-items:center;
+                      margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+            <h3 style="margin:0;">Manage Departments</h3>
+            <div style="display:flex; gap:8px; align-items:center;">
+              <input type="text" id="addDeptInput" placeholder="New department name"
+                style="padding:7px 12px; border:1px solid #d1d5db; border-radius:2px;
+                       font-size:0.82rem; font-family:'Poppins',sans-serif; width:200px;" />
+              <button type="button" class="btn-primary" id="addDeptBtn"
+                style="padding:7px 16px; font-size:0.8rem;">Add</button>
+            </div>
+          </div>
+          <p class="theme-help-text" style="margin-bottom:12px;">
+            These departments appear in the Add Staff form. You can rename or delete any department below.
+            Deleting a department does not remove staff members already assigned to it.
+          </p>
+          <div id="departmentManagerList"></div>
+          <p class="form-status" id="deptManagerStatus"></p>
+        </div>
+        <div class="dashboard-list" id="staffList"></div>
+      </section>
+
+      <!-- TAB 7: ADMISSIONS CONTROL -->
+      <section class="dashboard-panel" id="panel-admissions">
+        <div class="panel-header">
+          <h2>Admissions Control</h2>
+        </div>
+        <div class="dashboard-form-card">
+          <h3>Admissions Status</h3>
+          <form class="contact-form" id="admissionsStatusForm">
+            <label for="admissionsOpen">Current Status</label>
+            <select id="admissionsOpen" name="open" required>
+              <option value="open">Open — Accepting Applications</option>
+              <option value="closed">Closed — Not Accepting</option>
+            </select>
+            <label for="admissionsDeadline">Application Deadline</label>
+            <input type="date" id="admissionsDeadline" name="deadline" />
+            <p class="theme-help-text">A countdown timer will appear on the public Admissions page when a deadline is set.</p>
+            <div class="form-buttons">
+              <button type="submit" class="btn-primary">Save Status</button>
+            </div>
+            <p class="form-status" id="admissionsStatusMsg"></p>
+          </form>
+        </div>
+        <div class="dashboard-form-card">
+          <h3>Admission Requirements</h3>
+          <form class="contact-form" id="addRequirementForm">
+            <label for="reqItem">Add Requirement</label>
+            <input type="text" id="reqItem" name="requirement" placeholder="e.g. Birth certificate" required />
+            <div class="form-buttons">
+              <button type="submit" class="btn-primary">Add Requirement</button>
+            </div>
+          </form>
+          <div class="dashboard-list" id="requirementsList" style="margin-top:16px;"></div>
+        </div>
+        <div class="dashboard-form-card">
+          <h3>Application Process Steps</h3>
+          <p class="theme-help-text">Edit the step-by-step process shown on the public Admissions page. Maximum 6 steps.</p>
+          <div id="processStepsList"></div>
+          <div class="form-buttons" style="margin-top:12px;">
+            <button type="button" class="btn-secondary" id="addStepBtn">+ Add Step</button>
+            <button type="button" class="btn-primary" id="saveStepsBtn">Save Steps</button>
+          </div>
+          <p class="form-status" id="stepsMsg"></p>
+        </div>
+        <div class="dashboard-form-card">
+          <h3>Application Form Upload</h3>
+          <p class="theme-help-text">Upload the admission application form. Visitors can download it from the public Admissions page.</p>
+          <form class="contact-form" id="admissionFormUpload">
+            <label for="admissionFormFile">Upload Form (PDF recommended)</label>
+            <input type="file" id="admissionFormFile" name="file" accept=".pdf,.doc,.docx,image/*" />
+            <div class="form-buttons">
+              <button type="submit" class="btn-primary">Save Application Form</button>
+            </div>
+            <p class="form-status" id="admissionFormMsg"></p>
+          </form>
+          <div id="currentFormInfo" style="margin-top:12px; font-size:0.82rem; color:#6b7280;"></div>
+        </div>
+        <div class="dashboard-form-card">
+          <h3>Fees Structure</h3>
+          <form class="contact-form" id="admissionsFeesForm">
+            <label for="tuitionFee">Tuition Fee (per term, GHS)</label>
+            <input type="text" id="tuitionFee" name="tuitionFee" placeholder="e.g. 1,200.00" />
+            <label for="admissionFee">Admission Fee (one-time, GHS)</label>
+            <input type="text" id="admissionFee" name="admissionFee" placeholder="e.g. 500.00" />
+            <label for="boardingFee">Boarding Fee (per term, GHS)</label>
+            <input type="text" id="boardingFee" name="boardingFee" placeholder="e.g. 2,800.00" />
+            <label for="booksAndMaterials">Books and Materials (GHS)</label>
+            <input type="text" id="booksAndMaterials" name="booksAndMaterials" placeholder="e.g. 150.00" />
+            <label for="feesNote">Fees Note (optional)</label>
+            <textarea id="feesNote" name="feesNote" rows="2" placeholder="e.g. Fees subject to change..."></textarea>
+            <div class="form-buttons">
+              <button type="submit" class="btn-primary">Save Fees</button>
+            </div>
+            <p class="form-status" id="admissionsFeesMsg"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- TAB 8: NOTICES & DOWNLOADS -->
+      <section class="dashboard-panel" id="panel-notices">
+        <div class="panel-header">
+          <h2>Notices & Downloads</h2>
+          <button class="btn-primary" id="newNoticeBtn">+ Add Document</button>
+        </div>
+        <div class="dashboard-form-card" id="noticeForm" style="display:none;">
+          <h3>Add New Document</h3>
+          <form class="contact-form" id="noticeFormFields">
+            <label for="noticeTitle">Document Title</label>
+            <input type="text" id="noticeTitle" name="title" placeholder="e.g. 2026 First Term Timetable" required />
+            <label for="noticeCategory">Category</label>
+            <select id="noticeCategory" name="category" required>
+              <option value="">-- Select Category --</option>
+              <option value="Timetable">Timetable</option>
+              <option value="Results">Examination Results</option>
+              <option value="Forms">Application Forms</option>
+              <option value="Prospectus">Prospectus</option>
+              <option value="Circular">School Circular</option>
+              <option value="Other">Other</option>
+            </select>
+            <label for="noticeDate">Date Published</label>
+            <input type="date" id="noticeDate" name="date" required />
+            <label for="noticeDescription">Short Description (optional)</label>
+            <textarea id="noticeDescription" name="description" rows="2"
+              placeholder="Brief description of this document"></textarea>
+            <label for="noticeFile">Upload File (PDF or Image)</label>
+            <input type="file" id="noticeFile" name="file" accept=".pdf,image/*" required />
+            <p class="theme-help-text">Accepted: PDF, JPG, PNG. Max recommended: 5MB.</p>
+            <div class="form-buttons">
+              <button type="submit" class="btn-primary">Save Document</button>
+              <button type="button" class="btn-secondary" id="cancelNoticeBtn">Cancel</button>
+            </div>
+            <p class="form-status" id="noticeFormStatus"></p>
+          </form>
+        </div>
+        <div style="margin-bottom:16px; display:flex; align-items:center; gap:12px;">
+          <label style="font-size:0.82rem; font-weight:600; color:#374151;
+                        text-transform:uppercase; letter-spacing:0.3px;">Filter:</label>
+          <select class="feedback-filter" id="noticeFilterCategory">
+            <option value="all">All Categories</option>
+            <option value="Timetable">Timetable</option>
+            <option value="Results">Examination Results</option>
+            <option value="Forms">Application Forms</option>
+            <option value="Prospectus">Prospectus</option>
+            <option value="Circular">School Circular</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="dashboard-list" id="noticesList">
+          <div style="padding:16px; color:#9ca3af; font-size:0.85rem;">
+            No documents added yet. Click "+ Add Document" to begin.
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 9: SCHOOL SETTINGS -->
+      <section class="dashboard-panel" id="panel-settings">
+        <div class="panel-header">
+          <h2>School Settings</h2>
+        </div>
+
+        <div class="settings-nav">
+          <button type="button" class="settings-nav-btn active" data-section="identity">Identity</button>
+          <button type="button" class="settings-nav-btn" data-section="stats">Stats</button>
+          <button type="button" class="settings-nav-btn" data-section="academic">Academic</button>
+          <button type="button" class="settings-nav-btn" data-section="contact">Contact</button>
+          <button type="button" class="settings-nav-btn" data-section="social">Social Media</button>
+          <button type="button" class="settings-nav-btn" data-section="theme">Color Theme</button>
+          <button type="button" class="settings-nav-btn" data-section="about">About</button>
+        </div>
+
+        <form class="contact-form" id="settingsForm">
+
+          <!-- A: IDENTITY -->
+          <div class="settings-section active" id="settings-identity">
+            <div class="dashboard-form-card">
+              <h3>School Identity</h3>
+              <p class="theme-help-text">Basic information that identifies your school across the entire website.</p>
+              <label for="setSchoolName">School Name</label>
+              <input type="text" id="setSchoolName" name="schoolName" value="Example Secondary School" required />
+              <label for="setMotto">School Motto / Tagline</label>
+              <input type="text" id="setMotto" name="motto" value="Excellence in Education, Character, and Service" />
+              <label for="setWelcomeHeadline">Homepage Welcome Headline</label>
+              <p class="theme-help-text">The large bold text on your homepage hero banner.</p>
+              <input type="text" id="setWelcomeHeadline" name="welcomeHeadline" value="Welcome to Example Secondary School" />
+            </div>
+            <div class="dashboard-form-card">
+              <h3>School Logo</h3>
+              <p class="theme-help-text">Your logo appears in the top-left navbar on every page.</p>
+              <input type="file" id="setLogo" name="logo" accept="image/*" />
+              <div class="logo-preview-row" id="logoPreviewRow" style="display:none;">
+                <img id="logoPreviewImg" src="" alt="Logo preview" />
+                <button type="button" class="btn-secondary" id="extractColorsBtn">Generate Theme from Logo</button>
+              </div>
+            </div>
+            <div class="dashboard-form-card">
+              <h3>Homepage Cover Photo</h3>
+              <p class="theme-help-text">Full-width background image behind your homepage hero text.</p>
+              <input type="file" id="setCoverPhoto" name="coverPhoto" accept="image/*" />
+              <div class="cover-preview-row" id="coverPreviewRow" style="display:none;">
+                <img id="coverPreviewImg" src="" alt="Cover photo preview" />
+              </div>
+            </div>
+            <div class="dashboard-form-card">
+              <h3>School Leadership</h3>
+              <p class="theme-help-text">Names, roles, and photos for the About page leadership section.</p>
+              <div id="leadershipFormContainer"></div>
+              <div style="display:flex; align-items:center; gap:12px; margin-top:14px;">
+                <button type="button" class="btn-secondary" id="addLeaderBtn">+ Add Leader</button>
+                <button type="button" class="btn-primary" id="saveLeadershipBtn">Save Leadership</button>
+                <p class="form-status" id="leadershipSaveMsg"></p>
+              </div>
+            </div>
+            <div class="dashboard-form-card">
+              <h3>Page Header Images</h3>
+              <p class="theme-help-text">Upload a background photo for each public page header.
+                Recommended: landscape, minimum 1200px wide.</p>
+              <div class="settings-two-col" style="margin-top:14px;">
+                <div>
+                  <label>About Us</label>
+                  <input type="file" accept="image/*" class="page-header-upload" data-key="school-header-about" />
+                  <p class="stats-input-hint" id="hint-school-header-about">No image uploaded</p>
+                </div>
+                <div>
+                  <label>Admissions</label>
+                  <input type="file" accept="image/*" class="page-header-upload" data-key="school-header-admissions" />
+                  <p class="stats-input-hint" id="hint-school-header-admissions">No image uploaded</p>
+                </div>
+                <div>
+                  <label>Facilities</label>
+                  <input type="file" accept="image/*" class="page-header-upload" data-key="school-header-facilities" />
+                  <p class="stats-input-hint" id="hint-school-header-facilities">No image uploaded</p>
+                </div>
+                <div>
+                  <label>Facility Detail</label>
+                  <input type="file" accept="image/*" class="page-header-upload" data-key="school-header-facility" />
+                  <p class="stats-input-hint" id="hint-school-header-facility">No image uploaded</p>
+                </div>
+                <div>
+                  <label>Magazine</label>
+                  <input type="file" accept="image/*" class="page-header-upload" data-key="school-header-magazine" />
+                  <p class="stats-input-hint" id="hint-school-header-magazine">No image uploaded</p>
+                </div>
+                <div>
+                  <label>Contact</label>
+                  <input type="file" accept="image/*" class="page-header-upload" data-key="school-header-contact" />
+                  <p class="stats-input-hint" id="hint-school-header-contact">No image uploaded</p>
+                </div>
+                <div>
+                  <label>Feedback</label>
+                  <input type="file" accept="image/*" class="page-header-upload" data-key="school-header-feedback" />
+                  <p class="stats-input-hint" id="hint-school-header-feedback">No image uploaded</p>
+                </div>
+                <div>
+                  <label>Events</label>
+                  <input type="file" accept="image/*" class="page-header-upload" data-key="school-header-events" />
+                  <p class="stats-input-hint" id="hint-school-header-events">No image uploaded</p>
+                </div>
+                <div>
+                  <label>Staff Directory</label>
+                  <input type="file" accept="image/*" class="page-header-upload" data-key="school-header-staff" />
+                  <p class="stats-input-hint" id="hint-school-header-staff">No image uploaded</p>
+                </div>
+                <div>
+                  <label>Notices & Downloads</label>
+                  <input type="file" accept="image/*" class="page-header-upload" data-key="school-header-downloads" />
+                  <p class="stats-input-hint" id="hint-school-header-downloads">No image uploaded</p>
+                </div>
+              </div>
+              <p class="form-status" id="pageHeaderSaveMsg" style="margin-top:10px;"></p>
+            </div>
+            <div class="settings-save-row">
+              <button type="submit" class="btn-primary settings-save-btn">Save Identity Settings</button>
+              <p class="form-status" id="settingsFormStatus"></p>
+            </div>
+          </div>
+
+          <!-- B: STATS -->
+          <div class="settings-section" id="settings-stats">
+            <div class="dashboard-form-card">
+              <h3>School Stats</h3>
+              <p class="theme-help-text">These figures power the animated counters on your homepage.</p>
+              <div class="settings-stats-grid">
+                <div class="stats-input-group">
+                  <label for="setStudents">Total Students Enrolled</label>
+                  <input type="number" id="setStudents" name="students" value="1200" min="0" />
+                  <span class="stats-input-hint">Appears as counter 1 on homepage</span>
+                </div>
+                <div class="stats-input-group">
+                  <label for="setStaff">Total Teaching Staff</label>
+                  <input type="number" id="setStaff" name="staff" value="45" min="0" />
+                  <span class="stats-input-hint">Appears as counter 2 on homepage</span>
+                </div>
+                <div class="stats-input-group">
+                  <label for="setYearEstablished">Year Established</label>
+                  <input type="number" id="setYearEstablished" name="yearEstablished" value="2011" min="1800" max="2026" />
+                  <span class="stats-input-hint" id="yearsActiveDisplay">Years in operation: 15 — appears as counter 3</span>
+                </div>
+              </div>
+            </div>
+            <div class="settings-save-row">
+              <button type="submit" class="btn-primary settings-save-btn">Save Stats</button>
+              <p class="form-status" id="settingsFormStatus"></p>
+            </div>
+          </div>
+
+          <!-- C: ACADEMIC -->
+          <div class="settings-section" id="settings-academic">
+            <div class="dashboard-form-card">
+              <h3>Academic Profile</h3>
+              <p class="theme-help-text">Describes your school's structure and academic offerings.</p>
+              <div class="settings-two-col">
+                <div>
+                  <label for="setSchoolType">School Type</label>
+                  <select id="setSchoolType" name="schoolType">
+                    <option value="Public">Public</option>
+                    <option value="Private">Private</option>
+                    <option value="Mission">Mission</option>
+                    <option value="International">International</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="setSchoolLevel">School Level</label>
+                  <select id="setSchoolLevel" name="schoolLevel">
+                    <option value="Primary">Primary (Grades 1–6)</option>
+                    <option value="JHS">Junior High School (JHS)</option>
+                    <option value="SHS">Senior High School (SHS)</option>
+                    <option value="Technical">Technical / Vocational</option>
+                    <option value="Combined">Combined (Primary + JHS)</option>
+                    <option value="Combined SHS">Combined (JHS + SHS)</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="setTermStructure">Term Structure</label>
+                  <select id="setTermStructure" name="termStructure">
+                    <option value="Trimester">Trimester (3 terms per year)</option>
+                    <option value="Semester">Semester (2 semesters per year)</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="setAcademicYear">Current Academic Year</label>
+                  <input type="text" id="setAcademicYear" name="academicYear" placeholder="e.g. 2025 / 2026" />
+                </div>
+              </div>
+              <label for="setProgrammes" style="margin-top:16px;">Programmes Offered</label>
+              <p class="theme-help-text">Separate each programme with a comma.</p>
+              <input type="text" id="setProgrammes" name="programmes"
+                placeholder="e.g. General Science, Business, Visual Arts, Home Economics" />
+            </div>
+            <div class="settings-save-row">
+              <button type="submit" class="btn-primary settings-save-btn">Save Academic Info</button>
+              <p class="form-status" id="settingsFormStatus"></p>
+            </div>
+          </div>
+
+          <!-- D: CONTACT -->
+          <div class="settings-section" id="settings-contact">
+            <div class="dashboard-form-card">
+              <h3>Office Contact Details</h3>
+              <p class="theme-help-text">These details appear in the footer of every page on the website.</p>
+              <label for="setAddress">School Address</label>
+              <input type="text" id="setAddress" name="address" value="123 School Road, Accra, Ghana" required />
+              <div class="settings-two-col" style="margin-top:0;">
+                <div>
+                  <label for="setPhone">Office Phone</label>
+                  <input type="text" id="setPhone" name="phone" value="+233 000 000 000" required />
+                </div>
+                <div>
+                  <label for="setEmail">Email Address</label>
+                  <input type="email" id="setEmail" name="email" value="info@exampleschool.edu.gh" required />
+                </div>
+                <div>
+                  <label for="setOfficeHours">Office Hours</label>
+                  <input type="text" id="setOfficeHours" name="officeHours"
+                    placeholder="e.g. Monday - Friday, 8:00 AM - 4:00 PM" />
+                </div>
+              </div>
+            </div>
+            <div class="settings-save-row">
+              <button type="submit" class="btn-primary settings-save-btn">Save Contact Info</button>
+              <p class="form-status" id="settingsFormStatus"></p>
+            </div>
+          </div>
+
+          <!-- E: SOCIAL MEDIA -->
+          <div class="settings-section" id="settings-social">
+            <div class="dashboard-form-card">
+              <h3>Social Media Links</h3>
+              <p class="theme-help-text">Add links to your school's social media pages. Leave blank if not applicable.</p>
+              <div class="settings-two-col">
+                <div>
+                  <label for="setFacebook">Facebook</label>
+                  <input type="text" id="setFacebook" name="facebook" placeholder="https://facebook.com/yourschool" />
+                </div>
+                <div>
+                  <label for="setTwitter">Twitter / X</label>
+                  <input type="text" id="setTwitter" name="twitter" placeholder="https://x.com/yourschool" />
+                </div>
+                <div>
+                  <label for="setInstagram">Instagram</label>
+                  <input type="text" id="setInstagram" name="instagram" placeholder="https://instagram.com/yourschool" />
+                </div>
+                <div>
+                  <label for="setYoutube">YouTube</label>
+                  <input type="text" id="setYoutube" name="youtube" placeholder="https://youtube.com/yourschool" />
+                </div>
+              </div>
+            </div>
+            <div class="settings-save-row">
+              <button type="submit" class="btn-primary settings-save-btn">Save Social Links</button>
+              <p class="form-status" id="settingsFormStatus"></p>
+            </div>
+          </div>
+
+          <!-- F: COLOR THEME -->
+          <div class="settings-section" id="settings-theme">
+            <div class="dashboard-form-card">
+              <h3>Website Color Theme</h3>
+              <p class="theme-help-text">Set the primary and accent colors used across the entire website.</p>
+              <div class="theme-mode-row">
+                <label class="theme-radio">
+                  <input type="radio" name="themeMode" value="auto" id="themeModeAuto" checked />
+                  Auto-generate from logo
+                </label>
+                <label class="theme-radio">
+                  <input type="radio" name="themeMode" value="manual" id="themeModeManual" />
+                  Choose manually
+                </label>
+              </div>
+              <div class="theme-preview-card" id="themePreviewCard" style="display:none;">
+                <h4>Suggested Palette</h4>
+                <div class="palette-swatches" id="paletteSwatches"></div>
+                <div class="palette-roles" id="paletteRoles"></div>
+              </div>
+              <div class="theme-manual-row" id="themeManualRow" style="display:none;">
+                <div class="color-picker-group">
+                  <label for="manualPrimary">Primary Color</label>
+                  <input type="color" id="manualPrimary" value="#14532d" />
+                  <span class="stats-input-hint">Navbar, footer, buttons, headings</span>
+                </div>
+                <div class="color-picker-group">
+                  <label for="manualAccent">Accent Color</label>
+                  <input type="color" id="manualAccent" value="#facc15" />
+                  <span class="stats-input-hint">Highlights, hover states, CTA</span>
+                </div>
+              </div>
+              <div class="form-buttons" style="margin-top:20px;">
+                <button type="button" class="btn-primary" id="applyThemeBtn">Preview Theme on Site</button>
+                <button type="button" class="btn-secondary" id="resetThemeBtn">Reset to Default</button>
+              </div>
+              <p class="form-status" id="themeFormStatus"></p>
+            </div>
+            <div class="settings-save-row">
+              <button type="submit" class="btn-primary settings-save-btn">Save All Settings</button>
+              <p class="form-status" id="settingsFormStatus"></p>
+            </div>
+          </div>
+
+          <!-- G: ABOUT PAGE CONTENT -->
+          <div class="settings-section" id="settings-about">
+            <div class="dashboard-form-card">
+              <h3>About Page Content</h3>
+              <p class="theme-help-text">Edit the text that appears on the public About Us page.</p>
+              <label for="setMission">Our Mission</label>
+              <textarea id="setMission" name="mission" rows="4" placeholder="Describe the school's mission..."></textarea>
+              <label for="setVision">Our Vision</label>
+              <textarea id="setVision" name="vision" rows="4" placeholder="Describe the school's vision..."></textarea>
+              <label for="setHistory">Our History</label>
+              <textarea id="setHistory" name="history" rows="6" placeholder="Tell the school's story and founding history..."></textarea>
+            </div>
+            <div class="settings-save-row">
+              <button type="submit" class="btn-primary settings-save-btn">Save About Content</button>
+              <p class="form-status" id="settingsFormStatus"></p>
+            </div>
+          </div>
+
+        </form>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    // Auth guard — redirect to login if no token
+    (function () {
+      const token    = localStorage.getItem('admin-token');
+      const schoolId = localStorage.getItem('admin-schoolId');
+
+      if (!token || !schoolId) {
+        window.location.href = '/admin/login.html';
+        return;
+      }
+
+      window.ADMIN_TOKEN    = token;
+      window.ADMIN_SCHOOLID = schoolId;
+      window.BACKEND_URL    = 'http://localhost:5000';
+    })();
+  </script>
+
+  <script src="/js/admin-dashboard.js"></script>
+  <script src="/js/color-theme.js"></script>
+  <script src="/js/notices-admin.js"></script>
+
+  <script>
+    // Logout
+    document.getElementById('logoutBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      localStorage.removeItem('admin-token');
+      localStorage.removeItem('admin-email');
+      localStorage.removeItem('admin-schoolId');
+      localStorage.removeItem('admin-role');
+      window.location.href = '/admin/login.html';
+    });
+
+    // Settings sub-navigation
+    document.querySelectorAll('.settings-nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.settings-nav-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.settings-section').forEach(s => s.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('settings-' + btn.getAttribute('data-section')).classList.add('active');
+      });
+    });
+ </script>
+  <script src="/js/api.js"></script>
+</body>
+</html>

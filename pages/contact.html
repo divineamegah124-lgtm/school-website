@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us - Example Secondary School</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/premium.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="/images/logo-placeholder.png" alt="School Logo" />
+        <span class="school-name">Example Secondary School</span>
+      </div>
+      <nav class="nav-links" id="navLinks">
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/admissions.html">Admissions</a>
+        <a href="/facilities.html">Facilities</a>
+        <a href="/magazine.html">Magazine</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/feedback.html">Feedback</a>
+      </nav>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <h1>Contact Us</h1>
+    <p>Get in touch with us — we'd love to hear from you</p>
+  </section>
+
+  <!-- Contact Information & Form -->
+  <section class="content-section">
+    <div class="content-block">
+      <h2>Contact Details</h2>
+      <ul class="contact-details">
+        <li id="contactAddressItem">
+          <strong>Address:</strong> 123 School Road, Accra, Ghana
+        </li>
+        <li id="contactPhoneItem">
+          <strong>Phone:</strong> +233 000 000 000
+        </li>
+        <li id="contactEmailItem">
+          <strong>Email:</strong> info@exampleschool.edu.gh
+        </li>
+        <li id="contactHoursItem">
+          <strong>Office Hours:</strong> Monday - Friday, 8:00 AM - 4:00 PM
+        </li>
+      </ul>
+      <a href="https://maps.google.com" class="directions-link"
+        id="directionsLink" target="_blank">
+        Get Directions
+      </a>
+    </div>
+
+    <div class="content-block">
+      <h2>Send us a Message</h2>
+      <form class="contact-form" id="contactForm">
+        <label for="conName">Full Name</label>
+        <input type="text" id="conName" name="name" required />
+
+        <label for="conEmail">Email Address</label>
+        <input type="email" id="conEmail" name="email" required />
+
+        <label for="conPhone">Phone (optional)</label>
+        <input type="tel" id="conPhone" name="phone" />
+
+        <label for="conSubject">Subject</label>
+        <input type="text" id="conSubject" name="subject" required />
+
+        <label for="conMessage">Message</label>
+        <textarea id="conMessage" name="message" rows="6" required></textarea>
+
+        <button type="submit" class="btn-primary">Send Message</button>
+        <p class="form-status" id="contactStatus"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section class="content-section alt-bg">
+    <div class="content-block full-width">
+      <h2>School Location</h2>
+      <div class="map-container">
+        <iframe
+          id="schoolMapEmbed"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.7453917769497!2d-0.2!3d5.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNcKwMzYnMDAuMCJOIDDigLAwwrAyJw!5e0!3m2!1sen!2sgh!4v1234567890"
+          width="100%" height="400" style="border:0;"
+          allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>Example Secondary School</h3>
+        <p>Address: 123 School Road, Accra, Ghana</p>
+        <p>Phone: +233 000 000 000</p>
+        <p>Email: info@exampleschool.edu.gh</p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="/about.html">About Us</a>
+        <a href="/admissions.html">Admissions</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/feedback.html">Student & Parent Feedback</a>
+        <a href="/events.html">Events</a>
+        <a href="/staff.html">Staff Directory</a>
+      </div>
+      <div class="footer-col">
+        <h3>Follow Us</h3>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter/X</a>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Example Secondary School. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/theme-loader.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/contact-page.js"></script>
+</body>
+</html>
