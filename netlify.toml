@@ -7,6 +7,61 @@
   status = 200
 
 [[redirects]]
+  from = "/index.html"
+  to = "/pages/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/about.html"
+  to = "/pages/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/admissions.html"
+  to = "/pages/admissions.html"
+  status = 200
+
+[[redirects]]
+  from = "/facilities.html"
+  to = "/pages/facilities.html"
+  status = 200
+
+[[redirects]]
+  from = "/facility-detail.html"
+  to = "/pages/facility-detail.html"
+  status = 200
+
+[[redirects]]
+  from = "/magazine.html"
+  to = "/pages/magazine.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/pages/contact.html"
+  status = 200
+
+[[redirects]]
+  from = "/feedback.html"
+  to = "/pages/feedback.html"
+  status = 200
+
+[[redirects]]
+  from = "/events.html"
+  to = "/pages/events.html"
+  status = 200
+
+[[redirects]]
+  from = "/staff.html"
+  to = "/pages/staff.html"
+  status = 200
+
+[[redirects]]
+  from = "/downloads.html"
+  to = "/pages/downloads.html"
+  status = 200
+
+[[redirects]]
   from = "/css/*"
   to = "/public/css/:splat"
   status = 200
@@ -24,9 +79,4 @@
 [[redirects]]
   from = "/admin/*"
   to = "/admin/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/pages/*"
-  to = "/pages/:splat"
   status = 200
