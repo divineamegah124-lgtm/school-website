@@ -2,7 +2,7 @@
 // Central API helper for Divine Tech Venture School Platform
 // Handles all backend communication with localStorage fallback
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://school-website-backend-9gy9.onrender.com/api';
 const SCHOOL_ID = 'PRESEC';
 
 // Get JWT token from localStorage
