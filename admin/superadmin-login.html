@@ -4,154 +4,217 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Super Admin — Divine Tech Venture</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg:       #0f1117;
-      --surface:  #1a1d27;
-      --border:   #2a2d3a;
-      --primary:  #4f6ef7;
-      --danger:   #e53e3e;
-      --success:  #38a169;
-      --text:     #e2e8f0;
-      --muted:    #718096;
+      --blue:    #1a73e8;
+      --blue-h:  #1557b0;
+      --red:     #d93025;
+      --green:   #1e8e3e;
+      --yellow:  #f9ab00;
+      --text:    #202124;
+      --text-2:  #3c4043;
+      --muted:   #5f6368;
+      --border:  #dadce0;
+      --bg:      #f8f9fa;
+      --surface: #ffffff;
+      --focus:   rgba(26,115,232,0.12);
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Roboto', sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 24px;
     }
 
-    .login-box {
-      width: 100%;
-      max-width: 400px;
-      padding: 40px;
+    .login-card {
       background: var(--surface);
       border: 1px solid var(--border);
+      border-radius: 8px;
+      width: 100%;
+      max-width: 400px;
+      padding: 48px 40px 36px;
     }
 
-    .login-header {
+    .logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+
+    .logo-dots {
+      display: flex;
+      gap: 3px;
+    }
+
+    .logo-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .dot-b { background: var(--blue); }
+    .dot-r { background: var(--red); }
+    .dot-y { background: var(--yellow); }
+    .dot-g { background: var(--green); }
+
+    .logo-name {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-2);
+      letter-spacing: 0.01em;
+    }
+
+    .card-title {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .card-sub {
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
       margin-bottom: 32px;
     }
 
-    .login-header h1 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.02em;
-      margin-bottom: 4px;
-    }
-
-    .login-header p {
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-
     .field {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
+      position: relative;
     }
 
     .field label {
       display: block;
-      font-size: 0.72rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
+      font-size: 0.8rem;
+      font-weight: 500;
       color: var(--muted);
-      margin-bottom: 7px;
+      margin-bottom: 6px;
     }
 
     .field input {
       width: 100%;
-      padding: 10px 14px;
-      background: var(--bg);
+      padding: 13px 16px;
       border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.9rem;
       color: var(--text);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.88rem;
+      background: var(--surface);
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.15s, box-shadow 0.15s;
     }
 
     .field input:focus {
-      border-color: var(--primary);
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--focus);
     }
 
-    .btn-submit {
+    .field input::placeholder { color: #bdc1c6; }
+
+    .btn-signin {
       width: 100%;
-      padding: 11px;
-      background: var(--primary);
+      padding: 12px;
+      background: var(--blue);
       color: #fff;
       border: none;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 600;
+      border-radius: 4px;
+      font-family: 'Google Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
       cursor: pointer;
-      letter-spacing: 0.02em;
-      transition: opacity 0.2s;
+      letter-spacing: 0.01em;
       margin-top: 8px;
+      transition: background 0.15s, box-shadow 0.15s;
     }
 
-    .btn-submit:hover { opacity: 0.88; }
-    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-signin:hover {
+      background: var(--blue-h);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .btn-signin:disabled {
+      background: #aecbfa;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
 
     .status {
       margin-top: 14px;
       font-size: 0.8rem;
-      font-weight: 500;
+      color: var(--red);
       text-align: center;
       min-height: 18px;
-      color: var(--danger);
     }
 
-    .login-footer {
+    .card-footer {
       margin-top: 28px;
       padding-top: 20px;
       border-top: 1px solid var(--border);
+      text-align: center;
       font-size: 0.75rem;
       color: var(--muted);
-      text-align: center;
+    }
+
+    .card-footer strong {
+      color: var(--text-2);
+      font-weight: 500;
     }
   </style>
 </head>
 <body>
 
-  <div class="login-box">
-    <div class="login-header">
-      <h1>Divine Tech Venture</h1>
-      <p>Super Admin Portal — Authorized access only</p>
+  <div class="login-card">
+
+    <div class="logo-row">
+      <div class="logo-dots">
+        <span class="dot-b"></span>
+        <span class="dot-r"></span>
+        <span class="dot-y"></span>
+        <span class="dot-g"></span>
+      </div>
+      <span class="logo-name">Divine Tech Venture</span>
     </div>
 
+    <h1 class="card-title">Sign in</h1>
+    <p class="card-sub">Super Admin Portal · Authorized access only</p>
+
     <div class="field">
-      <label>Email Address</label>
-      <input type="email" id="email" placeholder="your@email.com" autocomplete="email" />
+      <label>Email address</label>
+      <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
     </div>
 
     <div class="field">
       <label>Password</label>
-      <input type="password" id="password" placeholder="Enter password" autocomplete="current-password" />
+      <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password" />
     </div>
 
-    <button class="btn-submit" id="loginBtn">Sign In</button>
+    <button class="btn-signin" id="loginBtn">Sign in</button>
     <p class="status" id="status"></p>
 
-    <div class="login-footer">
-      Divine Tech Venture &mdash; School Platform v1.0
+    <div class="card-footer">
+      <strong>School Platform v1.0</strong> &mdash; Divine Tech Venture
     </div>
+
   </div>
 
   <script>
     const API = 'https://school-website-backend-production.up.railway.app/api';
 
-    // Redirect if already logged in
     if (localStorage.getItem('superadmin-token')) {
       window.location.href = '/admin/superadmin-dashboard.html';
     }
@@ -181,7 +244,7 @@
 
         if (!res.ok) {
           statusEl.textContent = data.error || 'Login failed.';
-          btn.textContent = 'Sign In';
+          btn.textContent = 'Sign in';
           btn.disabled    = false;
           return;
         }
@@ -192,13 +255,12 @@
 
       } catch (err) {
         statusEl.textContent = 'Cannot connect to server.';
-        btn.textContent = 'Sign In';
+        btn.textContent = 'Sign in';
         btn.disabled    = false;
       }
     });
 
-    // Allow Enter key to submit
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', e => {
       if (e.key === 'Enter') document.getElementById('loginBtn').click();
     });
   </script>
