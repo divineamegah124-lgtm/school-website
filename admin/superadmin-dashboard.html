@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Super Admin Dashboard — Divine Tech Venture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:      #0f1117;
+      --surface: #1a1d27;
+      --border:  #2a2d3a;
+      --primary: #4f6ef7;
+      --danger:  #e53e3e;
+      --success: #38a169;
+      --warning: #d97706;
+      --text:    #e2e8f0;
+      --muted:   #718096;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      height: 52px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+    }
+
+    .topbar-brand {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .topbar-brand span {
+      color: var(--primary);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .topbar-email {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .btn-logout {
+      padding: 6px 14px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: all 0.2s;
+    }
+
+    .btn-logout:hover {
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    /* MAIN LAYOUT */
+    .main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 36px 28px;
+    }
+
+    /* STATS ROW */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 20px 24px;
+    }
+
+    .stat-card-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .stat-card-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    /* SECTION HEADER */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    /* BUTTONS */
+    .btn-primary {
+      padding: 8px 18px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.88; }
+
+    .btn-sm {
+      padding: 5px 12px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      transition: all 0.2s;
+    }
+
+    .btn-sm:hover { border-color: var(--text); color: var(--text); }
+    .btn-sm.danger:hover { border-color: var(--danger); color: var(--danger); }
+    .btn-sm.success:hover { border-color: var(--success); color: var(--success); }
+
+    /* SCHOOLS TABLE */
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow-x: auto;
+      margin-bottom: 36px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+
+    thead tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    thead th {
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+    tbody td {
+      padding: 12px 16px;
+      color: var(--text);
+      vertical-align: middle;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .badge-active { background: rgba(56,161,105,0.15); color: var(--success); }
+    .badge-inactive { background: rgba(229,62,62,0.15); color: var(--danger); }
+
+    .actions { display: flex; gap: 6px; }
+
+    /* ADD SCHOOL FORM */
+    .form-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 28px;
+      margin-bottom: 36px;
+      display: none;
+    }
+
+    .form-box.open { display: block; }
+
+    .form-box h3 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .form-field label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .form-field input {
+      width: 100%;
+      padding: 9px 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-field input:focus { border-color: var(--primary); }
+
+    .form-actions { display: flex; gap: 10px; align-items: center; }
+
+    .form-status {
+      font-size: 0.78rem;
+      font-weight: 500;
+      margin-left: 8px;
+    }
+
+    .form-status.error { color: var(--danger); }
+    .form-status.success { color: var(--success); }
+
+    /* RESET PASSWORD MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 32px;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .modal h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .modal p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .modal .form-field { margin-bottom: 16px; }
+
+    .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+
+    .btn-cancel {
+      padding: 8px 18px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-cancel:hover { border-color: var(--text); color: var(--text); }
+
+    .modal-status {
+      font-size: 0.78rem;
+      font-weight: 500;
+      margin-top: 10px;
+    }
+
+    .modal-status.error { color: var(--danger); }
+    .modal-status.success { color: var(--success); }
+
+    /* EMPTY STATE */
+    .empty {
+      padding: 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    /* LOADING */
+    .loading {
+      padding: 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-brand">Divine Tech Venture <span>/ Super Admin</span></div>
+    <div class="topbar-right">
+      <span class="topbar-email" id="adminEmail"></span>
+      <button class="btn-logout" id="logoutBtn">Sign Out</button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-card-label">Total Schools</div>
+        <div class="stat-card-value" id="statTotal">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Active Schools</div>
+        <div class="stat-card-value" id="statActive">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Inactive Schools</div>
+        <div class="stat-card-value" id="statInactive">—</div>
+      </div>
+    </div>
+
+    <!-- ADD SCHOOL -->
+    <div class="section-header">
+      <div class="section-title">Registered Schools</div>
+      <button class="btn-primary" id="toggleFormBtn">+ Add New School</button>
+    </div>
+
+    <div class="form-box" id="addSchoolForm">
+      <h3>Register New School</h3>
+      <div class="form-grid">
+        <div class="form-field">
+          <label>School ID</label>
+          <input type="text" id="newSchoolId" placeholder="e.g. PRESEC" />
+        </div>
+        <div class="form-field">
+          <label>School Name</label>
+          <input type="text" id="newSchoolName" placeholder="e.g. Presbyterian Boys Secondary School" />
+        </div>
+        <div class="form-field">
+          <label>Admin Email</label>
+          <input type="email" id="newAdminEmail" placeholder="admin@school.edu.gh" />
+        </div>
+        <div class="form-field">
+          <label>Admin Password</label>
+          <input type="password" id="newAdminPassword" placeholder="Set a strong password" />
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn-primary" id="submitSchoolBtn">Register School</button>
+        <button class="btn-cancel" id="cancelFormBtn">Cancel</button>
+        <span class="form-status" id="formStatus"></span>
+      </div>
+    </div>
+
+    <!-- SCHOOLS TABLE -->
+    <div class="table-wrap">
+      <div class="loading" id="tableLoading">Loading schools...</div>
+      <table id="schoolsTable" style="display:none;">
+        <thead>
+          <tr>
+            <th>School ID</th>
+            <th>School Name</th>
+            <th>Admin Email</th>
+            <th>Status</th>
+            <th>Registered</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="schoolsTableBody"></tbody>
+      </table>
+      <div class="empty" id="emptyState" style="display:none;">No schools registered yet.</div>
+    </div>
+
+  </div>
+
+  <!-- RESET PASSWORD MODAL -->
+  <div class="modal-overlay" id="resetModal">
+    <div class="modal">
+      <h3>Reset Admin Password</h3>
+      <p id="resetModalSchoolName">School: —</p>
+      <div class="form-field">
+        <label>New Password</label>
+        <input type="password" id="resetPassword" placeholder="Enter new password" />
+      </div>
+      <div class="modal-actions">
+        <button class="btn-primary" id="confirmResetBtn">Reset Password</button>
+        <button class="btn-cancel" id="cancelResetBtn">Cancel</button>
+      </div>
+      <div class="modal-status" id="resetStatus"></div>
+    </div>
+  </div>
+
+  <script>
+    const API   = 'https://school-website-backend-production.up.railway.app/api';
+    const token = localStorage.getItem('superadmin-token');
+
+    // Guard — redirect if not logged in
+    if (!token) window.location.href = '/admin/superadmin-login.html';
+
+    document.getElementById('adminEmail').textContent = localStorage.getItem('superadmin-email') || '';
+
+    // Logout
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      localStorage.removeItem('superadmin-token');
+      localStorage.removeItem('superadmin-email');
+      window.location.href = '/admin/superadmin-login.html';
+    });
+
+    // Load schools
+    let schools = [];
+
+    async function loadSchools() {
+      try {
+        const res  = await fetch(`${API}/superadmin/schools`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          if (res.status === 401 || res.status === 403) {
+            localStorage.removeItem('superadmin-token');
+            window.location.href = '/admin/superadmin-login.html';
+          }
+          return;
+        }
+
+        schools = data;
+        renderSchools();
+      } catch (err) {
+        document.getElementById('tableLoading').textContent = 'Failed to load schools.';
+      }
+    }
+
+    function renderSchools() {
+      const loading  = document.getElementById('tableLoading');
+      const table    = document.getElementById('schoolsTable');
+      const empty    = document.getElementById('emptyState');
+      const tbody    = document.getElementById('schoolsTableBody');
+
+      loading.style.display = 'none';
+
+      if (schools.length === 0) {
+        empty.style.display = 'block';
+        table.style.display = 'none';
+        document.getElementById('statTotal').textContent    = 0;
+        document.getElementById('statActive').textContent   = 0;
+        document.getElementById('statInactive').textContent = 0;
+        return;
+      }
+
+      const active   = schools.filter(s => s.active).length;
+      const inactive = schools.length - active;
+
+      document.getElementById('statTotal').textContent    = schools.length;
+      document.getElementById('statActive').textContent   = active;
+      document.getElementById('statInactive').textContent = inactive;
+
+      tbody.innerHTML = schools.map(s => `
+        <tr>
+          <td><strong>${s.schoolId}</strong></td>
+          <td>${s.name}</td>
+          <td>${s.users && s.users[0] ? s.users[0].email : '—'}</td>
+          <td><span class="badge ${s.active ? 'badge-active' : 'badge-inactive'}">${s.active ? 'Active' : 'Inactive'}</span></td>
+          <td>${new Date(s.createdAt).toLocaleDateString('en-GB')}</td>
+          <td>
+            <div class="actions">
+              <button class="btn-sm" onclick="openResetModal('${s.schoolId}', '${s.name}')">Reset PW</button>
+              ${s.active
+                ? `<button class="btn-sm danger" onclick="deactivateSchool('${s.schoolId}')">Deactivate</button>`
+                : `<button class="btn-sm success" onclick="reactivateSchool('${s.schoolId}')">Reactivate</button>`
+              }
+            </div>
+          </td>
+        </tr>
+      `).join('');
+
+      table.style.display = 'table';
+    }
+
+    // Toggle add school form
+    const toggleFormBtn = document.getElementById('toggleFormBtn');
+    const addSchoolForm = document.getElementById('addSchoolForm');
+    const cancelFormBtn = document.getElementById('cancelFormBtn');
+
+    toggleFormBtn.addEventListener('click', () => {
+      addSchoolForm.classList.toggle('open');
+      toggleFormBtn.textContent = addSchoolForm.classList.contains('open') ? 'Cancel' : '+ Add New School';
+    });
+
+    cancelFormBtn.addEventListener('click', () => {
+      addSchoolForm.classList.remove('open');
+      toggleFormBtn.textContent = '+ Add New School';
+    });
+
+    // Register new school
+    document.getElementById('submitSchoolBtn').addEventListener('click', async () => {
+      const schoolId       = document.getElementById('newSchoolId').value.trim().toUpperCase();
+      const schoolName     = document.getElementById('newSchoolName').value.trim();
+      const adminEmail     = document.getElementById('newAdminEmail').value.trim();
+      const adminPassword  = document.getElementById('newAdminPassword').value;
+      const statusEl       = document.getElementById('formStatus');
+      const btn            = document.getElementById('submitSchoolBtn');
+
+      if (!schoolId || !schoolName || !adminEmail || !adminPassword) {
+        statusEl.textContent  = 'All fields are required.';
+        statusEl.className    = 'form-status error';
+        return;
+      }
+
+      btn.textContent  = 'Registering...';
+      btn.disabled     = true;
+      statusEl.textContent = '';
+
+      try {
+        const res  = await fetch(`${API}/superadmin/schools`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ schoolId, schoolName, adminEmail, adminPassword })
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          statusEl.textContent = data.error || 'Registration failed.';
+          statusEl.className   = 'form-status error';
+          btn.textContent      = 'Register School';
+          btn.disabled         = false;
+          return;
+        }
+
+        statusEl.textContent = 'School registered successfully.';
+        statusEl.className   = 'form-status success';
+        btn.textContent      = 'Register School';
+        btn.disabled         = false;
+
+        document.getElementById('newSchoolId').value       = '';
+        document.getElementById('newSchoolName').value     = '';
+        document.getElementById('newAdminEmail').value     = '';
+        document.getElementById('newAdminPassword').value  = '';
+
+        await loadSchools();
+
+      } catch (err) {
+        statusEl.textContent = 'Cannot connect to server.';
+        statusEl.className   = 'form-status error';
+        btn.textContent      = 'Register School';
+        btn.disabled         = false;
+      }
+    });
+
+    // Deactivate school
+    async function deactivateSchool(schoolId) {
+      if (!confirm(`Deactivate ${schoolId}? Their admin will lose access.`)) return;
+
+      try {
+        const res = await fetch(`${API}/superadmin/schools/${schoolId}/deactivate`, {
+          method: 'PATCH',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.ok) await loadSchools();
+      } catch (err) {
+        alert('Failed to deactivate school.');
+      }
+    }
+
+    // Reactivate school
+    async function reactivateSchool(schoolId) {
+      try {
+        const res = await fetch(`${API}/superadmin/schools/${schoolId}/reactivate`, {
+          method: 'PATCH',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.ok) await loadSchools();
+      } catch (err) {
+        alert('Failed to reactivate school.');
+      }
+    }
+
+    // Reset password modal
+    let resetTargetSchoolId = null;
+
+    function openResetModal(schoolId, schoolName) {
+      resetTargetSchoolId = schoolId;
+      document.getElementById('resetModalSchoolName').textContent = `School: ${schoolName}`;
+      document.getElementById('resetPassword').value = '';
+      document.getElementById('resetStatus').textContent = '';
+      document.getElementById('resetModal').classList.add('open');
+    }
+
+    document.getElementById('cancelResetBtn').addEventListener('click', () => {
+      document.getElementById('resetModal').classList.remove('open');
+    });
+
+    document.getElementById('confirmResetBtn').addEventListener('click', async () => {
+      const newPassword = document.getElementById('resetPassword').value;
+      const statusEl    = document.getElementById('resetStatus');
+      const btn         = document.getElementById('confirmResetBtn');
+
+      if (!newPassword) {
+        statusEl.textContent = 'Password is required.';
+        statusEl.className   = 'modal-status error';
+        return;
+      }
+
+      btn.textContent = 'Resetting...';
+      btn.disabled    = true;
+
+      try {
+        const res  = await fetch(`${API}/superadmin/schools/${resetTargetSchoolId}/reset-password`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ newPassword })
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          statusEl.textContent = data.error || 'Reset failed.';
+          statusEl.className   = 'modal-status error';
+          btn.textContent      = 'Reset Password';
+          btn.disabled         = false;
+          return;
+        }
+
+        statusEl.textContent = 'Password reset successfully.';
+        statusEl.className   = 'modal-status success';
+        btn.textContent      = 'Reset Password';
+        btn.disabled         = false;
+
+        setTimeout(() => {
+          document.getElementById('resetModal').classList.remove('open');
+        }, 1500);
+
+      } catch (err) {
+        statusEl.textContent = 'Cannot connect to server.';
+        statusEl.className   = 'modal-status error';
+        btn.textContent      = 'Reset Password';
+        btn.disabled         = false;
+      }
+    });
+
+    // Init
+    loadSchools();
+  </script>
+
+</body>
+</html>

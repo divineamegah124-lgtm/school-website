@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Super Admin — Divine Tech Venture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:       #0f1117;
+      --surface:  #1a1d27;
+      --border:   #2a2d3a;
+      --primary:  #4f6ef7;
+      --danger:   #e53e3e;
+      --success:  #38a169;
+      --text:     #e2e8f0;
+      --muted:    #718096;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 400px;
+      padding: 40px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .login-header {
+      margin-bottom: 32px;
+    }
+
+    .login-header h1 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .login-header p {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 10px 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .field input:focus {
+      border-color: var(--primary);
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 11px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s;
+      margin-top: 8px;
+    }
+
+    .btn-submit:hover { opacity: 0.88; }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .status {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-align: center;
+      min-height: 18px;
+      color: var(--danger);
+    }
+
+    .login-footer {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <div class="login-header">
+      <h1>Divine Tech Venture</h1>
+      <p>Super Admin Portal — Authorized access only</p>
+    </div>
+
+    <div class="field">
+      <label>Email Address</label>
+      <input type="email" id="email" placeholder="your@email.com" autocomplete="email" />
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="password" placeholder="Enter password" autocomplete="current-password" />
+    </div>
+
+    <button class="btn-submit" id="loginBtn">Sign In</button>
+    <p class="status" id="status"></p>
+
+    <div class="login-footer">
+      Divine Tech Venture &mdash; School Platform v1.0
+    </div>
+  </div>
+
+  <script>
+    const API = 'https://school-website-backend-production.up.railway.app/api';
+
+    // Redirect if already logged in
+    if (localStorage.getItem('superadmin-token')) {
+      window.location.href = '/admin/superadmin-dashboard.html';
+    }
+
+    document.getElementById('loginBtn').addEventListener('click', async () => {
+      const email    = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const statusEl = document.getElementById('status');
+      const btn      = document.getElementById('loginBtn');
+
+      if (!email || !password) {
+        statusEl.textContent = 'Email and password are required.';
+        return;
+      }
+
+      btn.textContent = 'Signing in...';
+      btn.disabled    = true;
+      statusEl.textContent = '';
+
+      try {
+        const res  = await fetch(`${API}/superadmin/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          statusEl.textContent = data.error || 'Login failed.';
+          btn.textContent = 'Sign In';
+          btn.disabled    = false;
+          return;
+        }
+
+        localStorage.setItem('superadmin-token', data.token);
+        localStorage.setItem('superadmin-email', data.superadmin.email);
+        window.location.href = '/admin/superadmin-dashboard.html';
+
+      } catch (err) {
+        statusEl.textContent = 'Cannot connect to server.';
+        btn.textContent = 'Sign In';
+        btn.disabled    = false;
+      }
+    });
+
+    // Allow Enter key to submit
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('loginBtn').click();
+    });
+  </script>
+
+</body>
+</html>
