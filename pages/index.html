@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/css/style.css" />
   <link rel="stylesheet" href="/css/premium.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
 
@@ -69,13 +69,18 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Welcome to Example Secondary School</h1>
-      <p>Excellence in Education, Character, and Service</p>
-      <a href="/admissions.html" class="btn-primary">Apply Now</a>
-    </div>
-  </section>
+<section class="hero" id="heroSlider">
+  <div class="hero-slides">
+    <div class="hero-slide cover active" style="background-image: url('/images/hero1.jpg')"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Welcome to Example Secondary School</h1>
+    <p>Excellence in Education, Character, and Service</p>
+    <a href="/admissions.html" class="btn-primary">Apply Now</a>
+  </div>
+  <div class="hero-dots" id="heroDots"></div>
+</section>
 
   <!-- Stats Section -->
   <section class="stats">
@@ -149,5 +154,6 @@
   <script src="/js/main.js"></script>
   <script src="/js/homepage-features.js"></script>
   <script src="/js/demo-images.js"></script>
+  <script src="/js/scroll-animations.js"></script>
 </body>
 </html>

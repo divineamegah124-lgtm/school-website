@@ -34,8 +34,9 @@
       <button class="dashboard-tab" data-tab="events">Events</button>
       <button class="dashboard-tab" data-tab="staff">Staff Directory</button>
       <button class="dashboard-tab" data-tab="admissions">Admissions Control</button>
-      <button class="dashboard-tab" data-tab="notices">Notices & Downloads</button>
+      <button class="dashboard-tab" data-tab="notices">Notices &amp; Downloads</button>
       <button class="dashboard-tab" data-tab="settings">School Settings</button>
+      <button class="dashboard-tab" data-tab="gallery">🖼 Hero &amp; Gallery</button>
     </nav>
 
     <main class="dashboard-content">
@@ -152,18 +153,15 @@
       <!-- TAB 3: FEEDBACK & MESSAGES -->
       <section class="dashboard-panel" id="panel-feedback">
         <div class="panel-header">
-          <h2>Feedback & Messages</h2>
+          <h2>Feedback &amp; Messages</h2>
         </div>
         <div class="settings-nav" style="margin-bottom:20px;">
           <button type="button" class="settings-nav-btn active" id="feedbackSubBtn">Feedback</button>
           <button type="button" class="settings-nav-btn" id="messagesSubBtn">Messages</button>
         </div>
-
-        <!-- Feedback sub-section -->
         <div id="feedbackSubSection">
           <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
-            <label style="font-size:0.78rem; font-weight:600; color:#374151;
-                          text-transform:uppercase; letter-spacing:0.3px;">Filter:</label>
+            <label style="font-size:0.78rem; font-weight:600; color:#374151; text-transform:uppercase; letter-spacing:0.3px;">Filter:</label>
             <select class="feedback-filter" id="feedbackStatusFilter">
               <option value="all">All Status</option>
               <option value="unresolved">Unresolved</option>
@@ -205,12 +203,9 @@
             </div>
           </div>
         </div>
-
-        <!-- Messages sub-section -->
         <div id="messagesSubSection" style="display:none;">
           <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
-            <label style="font-size:0.78rem; font-weight:600; color:#374151;
-                          text-transform:uppercase; letter-spacing:0.3px;">Filter:</label>
+            <label style="font-size:0.78rem; font-weight:600; color:#374151; text-transform:uppercase; letter-spacing:0.3px;">Filter:</label>
             <select class="feedback-filter" id="messagesReadFilter">
               <option value="all">All Messages</option>
               <option value="unread">Unread</option>
@@ -264,7 +259,7 @@
       <!-- TAB 5: EVENTS -->
       <section class="dashboard-panel" id="panel-events">
         <div class="panel-header">
-          <h2>Events & Calendar</h2>
+          <h2>Events &amp; Calendar</h2>
           <button class="btn-primary" id="newEventBtn">+ New Event</button>
         </div>
         <div class="dashboard-form-card" id="eventForm" style="display:none;">
@@ -310,12 +305,9 @@
             </select>
             <div id="newDeptInlineRow" style="display:none; gap:8px; align-items:center; margin-top:6px;">
               <input type="text" id="newDeptInlineInput" placeholder="Type new department name"
-                style="flex:1; padding:8px 12px; border:1px solid #d1d5db; border-radius:2px;
-                       font-size:0.85rem; font-family:'Poppins',sans-serif;" />
-              <button type="button" class="btn-primary" id="confirmNewDeptBtn"
-                style="padding:8px 16px; font-size:0.8rem;">Add</button>
-              <button type="button" class="btn-secondary" id="cancelNewDeptBtn"
-                style="padding:8px 14px; font-size:0.8rem;">Cancel</button>
+                style="flex:1; padding:8px 12px; border:1px solid #d1d5db; border-radius:2px; font-size:0.85rem; font-family:'Poppins',sans-serif;" />
+              <button type="button" class="btn-primary" id="confirmNewDeptBtn" style="padding:8px 16px; font-size:0.8rem;">Add</button>
+              <button type="button" class="btn-secondary" id="cancelNewDeptBtn" style="padding:8px 14px; font-size:0.8rem;">Cancel</button>
             </div>
             <div class="form-buttons" style="margin-top:20px; gap:8px;">
               <button type="button" class="btn-primary" id="saveAndAddStaffBtn">Save &amp; Add Another</button>
@@ -326,15 +318,12 @@
           </form>
         </div>
         <div class="dashboard-form-card">
-          <div style="display:flex; justify-content:space-between; align-items:center;
-                      margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
             <h3 style="margin:0;">Manage Departments</h3>
             <div style="display:flex; gap:8px; align-items:center;">
               <input type="text" id="addDeptInput" placeholder="New department name"
-                style="padding:7px 12px; border:1px solid #d1d5db; border-radius:2px;
-                       font-size:0.82rem; font-family:'Poppins',sans-serif; width:200px;" />
-              <button type="button" class="btn-primary" id="addDeptBtn"
-                style="padding:7px 16px; font-size:0.8rem;">Add</button>
+                style="padding:7px 12px; border:1px solid #d1d5db; border-radius:2px; font-size:0.82rem; font-family:'Poppins',sans-serif; width:200px;" />
+              <button type="button" class="btn-primary" id="addDeptBtn" style="padding:7px 16px; font-size:0.8rem;">Add</button>
             </div>
           </div>
           <p class="theme-help-text" style="margin-bottom:12px;">
@@ -427,7 +416,7 @@
       <!-- TAB 8: NOTICES & DOWNLOADS -->
       <section class="dashboard-panel" id="panel-notices">
         <div class="panel-header">
-          <h2>Notices & Downloads</h2>
+          <h2>Notices &amp; Downloads</h2>
           <button class="btn-primary" id="newNoticeBtn">+ Add Document</button>
         </div>
         <div class="dashboard-form-card" id="noticeForm" style="display:none;">
@@ -448,8 +437,7 @@
             <label for="noticeDate">Date Published</label>
             <input type="date" id="noticeDate" name="date" required />
             <label for="noticeDescription">Short Description (optional)</label>
-            <textarea id="noticeDescription" name="description" rows="2"
-              placeholder="Brief description of this document"></textarea>
+            <textarea id="noticeDescription" name="description" rows="2" placeholder="Brief description of this document"></textarea>
             <label for="noticeFile">Upload File (PDF or Image)</label>
             <input type="file" id="noticeFile" name="file" accept=".pdf,image/*" required />
             <p class="theme-help-text">Accepted: PDF, JPG, PNG. Max recommended: 5MB.</p>
@@ -461,8 +449,7 @@
           </form>
         </div>
         <div style="margin-bottom:16px; display:flex; align-items:center; gap:12px;">
-          <label style="font-size:0.82rem; font-weight:600; color:#374151;
-                        text-transform:uppercase; letter-spacing:0.3px;">Filter:</label>
+          <label style="font-size:0.82rem; font-weight:600; color:#374151; text-transform:uppercase; letter-spacing:0.3px;">Filter:</label>
           <select class="feedback-filter" id="noticeFilterCategory">
             <option value="all">All Categories</option>
             <option value="Timetable">Timetable</option>
@@ -485,7 +472,6 @@
         <div class="panel-header">
           <h2>School Settings</h2>
         </div>
-
         <div class="settings-nav">
           <button type="button" class="settings-nav-btn active" data-section="identity">Identity</button>
           <button type="button" class="settings-nav-btn" data-section="stats">Stats</button>
@@ -495,7 +481,6 @@
           <button type="button" class="settings-nav-btn" data-section="theme">Color Theme</button>
           <button type="button" class="settings-nav-btn" data-section="about">About</button>
         </div>
-
         <form class="contact-form" id="settingsForm">
 
           <!-- A: IDENTITY -->
@@ -540,8 +525,7 @@
             </div>
             <div class="dashboard-form-card">
               <h3>Page Header Images</h3>
-              <p class="theme-help-text">Upload a background photo for each public page header.
-                Recommended: landscape, minimum 1200px wide.</p>
+              <p class="theme-help-text">Upload a background photo for each public page header. Recommended: landscape, minimum 1200px wide.</p>
               <div class="settings-two-col" style="margin-top:14px;">
                 <div>
                   <label>About Us</label>
@@ -589,7 +573,7 @@
                   <p class="stats-input-hint" id="hint-school-header-staff">No image uploaded</p>
                 </div>
                 <div>
-                  <label>Notices & Downloads</label>
+                  <label>Notices &amp; Downloads</label>
                   <input type="file" accept="image/*" class="page-header-upload" data-key="school-header-downloads" />
                   <p class="stats-input-hint" id="hint-school-header-downloads">No image uploaded</p>
                 </div>
@@ -671,8 +655,7 @@
               </div>
               <label for="setProgrammes" style="margin-top:16px;">Programmes Offered</label>
               <p class="theme-help-text">Separate each programme with a comma.</p>
-              <input type="text" id="setProgrammes" name="programmes"
-                placeholder="e.g. General Science, Business, Visual Arts, Home Economics" />
+              <input type="text" id="setProgrammes" name="programmes" placeholder="e.g. General Science, Business, Visual Arts, Home Economics" />
             </div>
             <div class="settings-save-row">
               <button type="submit" class="btn-primary settings-save-btn">Save Academic Info</button>
@@ -698,8 +681,7 @@
                 </div>
                 <div>
                   <label for="setOfficeHours">Office Hours</label>
-                  <input type="text" id="setOfficeHours" name="officeHours"
-                    placeholder="e.g. Monday - Friday, 8:00 AM - 4:00 PM" />
+                  <input type="text" id="setOfficeHours" name="officeHours" placeholder="e.g. Monday - Friday, 8:00 AM - 4:00 PM" />
                 </div>
               </div>
             </div>
@@ -804,23 +786,68 @@
         </form>
       </section>
 
+      <!-- TAB 10: HERO & GALLERY -->
+      <section class="dashboard-panel" id="panel-gallery">
+        <div class="panel-header">
+          <h2>Hero &amp; Gallery</h2>
+          <button class="btn-primary" onclick="document.getElementById('galleryUploadForm').style.display='block'">+ Upload Image</button>
+        </div>
+        <div class="dashboard-form-card" id="galleryUploadForm" style="display:none;">
+          <h3>Upload New Image</h3>
+          <div class="contact-form">
+            <label>Image URL</label>
+            <input type="url" id="galleryImageUrl" placeholder="https://..." />
+            <label>Caption (optional)</label>
+            <input type="text" id="galleryImageCaption" placeholder="e.g. Science Laboratory" />
+            <label>Category</label>
+            <select id="galleryImageCategory">
+              <option value="general">General</option>
+              <option value="facilities">Facilities</option>
+              <option value="events">Events</option>
+              <option value="school-life">School Life</option>
+            </select>
+            <label style="display:flex; align-items:center; gap:8px; margin-top:12px;">
+              <input type="checkbox" id="galleryShowInHero" />
+              Show in homepage hero slideshow
+            </label>
+          </div>
+          <div class="form-buttons">
+            <button class="btn-primary" onclick="uploadGalleryImage()">Upload</button>
+            <button class="btn-secondary" onclick="document.getElementById('galleryUploadForm').style.display='none'">Cancel</button>
+          </div>
+          <p class="form-status" id="galleryUploadStatus"></p>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+          <label style="font-size:0.82rem; font-weight:600; color:#374151; text-transform:uppercase; letter-spacing:0.3px;">Filter:</label>
+          <select class="feedback-filter" onchange="filterGallery(this.value)" id="galleryCategoryFilter">
+            <option value="all">All Images</option>
+            <option value="hero">Hero Slides</option>
+            <option value="facilities">Facilities</option>
+            <option value="events">Events</option>
+            <option value="school-life">School Life</option>
+            <option value="general">General</option>
+          </select>
+        </div>
+        <div class="gallery-upload-preview" id="adminGalleryGrid">
+          <div class="gallery-empty-state" id="adminGalleryEmpty">No images uploaded yet. Click + Upload Image to add your first.</div>
+        </div>
+      </section>
+
     </main>
   </div>
 
+  <!-- AUTH GUARD -->
   <script>
-    // Auth guard — redirect to login if no token
     (function () {
       const token    = localStorage.getItem('admin-token');
       const schoolId = localStorage.getItem('admin-schoolId');
-
       if (!token || !schoolId) {
         window.location.href = '/admin/login.html';
         return;
       }
-
       window.ADMIN_TOKEN    = token;
       window.ADMIN_SCHOOLID = schoolId;
-   window.BACKEND_URL    = 'https://school-website-backend-production.up.railway.app';
+      window.BACKEND_URL    = 'https://school-website-backend-production.up.railway.app';
     })();
   </script>
 
@@ -829,7 +856,7 @@
   <script src="/js/notices-admin.js"></script>
 
   <script>
-    // Logout
+    // ── LOGOUT ────────────────────────────────
     document.getElementById('logoutBtn').addEventListener('click', (e) => {
       e.preventDefault();
       localStorage.removeItem('admin-token');
@@ -839,8 +866,121 @@
       window.location.href = '/admin/login.html';
     });
 
-    // Settings sub-navigation
-    document.querySelectorAll('.settings-nav-btn').forEach(btn => {
+    // ── TAB SWITCHER ──────────────────────────
+    function switchTab(tab) {
+      document.querySelectorAll('.dashboard-tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.dashboard-panel').forEach(p => p.classList.remove('active'));
+      const activeBtn = document.querySelector(`[data-tab="${tab}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
+      const panel = document.getElementById(`panel-${tab}`);
+      if (panel) panel.classList.add('active');
+      if (tab === 'gallery') loadAdminGallery();
+    }
+
+    document.querySelectorAll('.dashboard-tab[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => switchTab(btn.getAttribute('data-tab')));
+    });
+
+    // ── ADMIN GALLERY ─────────────────────────
+    let adminGalleryImages = [];
+
+    async function loadAdminGallery() {
+      const grid = document.getElementById('adminGalleryGrid');
+      try {
+        const res = await fetch(`${window.BACKEND_URL}/api/gallery?schoolId=${window.ADMIN_SCHOOLID}`, {
+          headers: { 'Authorization': `Bearer ${window.ADMIN_TOKEN}` }
+        });
+        adminGalleryImages = await res.json();
+        renderAdminGallery(adminGalleryImages);
+      } catch (e) {
+        console.error('Gallery load failed', e);
+        if (grid) grid.innerHTML = '<div class="gallery-empty-state">Failed to load images. Check your connection.</div>';
+      }
+    }
+
+    function renderAdminGallery(images) {
+      const grid = document.getElementById('adminGalleryGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      if (!images.length) {
+        grid.innerHTML = '<div class="gallery-empty-state">No images uploaded yet. Click + Upload Image to add your first.</div>';
+        return;
+      }
+      images.forEach(img => {
+        const item = document.createElement('div');
+        item.classList.add('gallery-preview-item');
+        item.dataset.category = img.category || 'general';
+        item.innerHTML = `
+          <img src="${img.url}" alt="${img.caption || ''}" />
+          ${img.showInHero ? '<div class="gallery-hero-badge">Hero</div>' : ''}
+          <div class="gallery-preview-caption">${img.caption || img.category || 'No caption'}</div>
+          <button class="gallery-preview-delete" onclick="deleteGalleryImage('${img.id}')" title="Delete">&times;</button>
+        `;
+        grid.appendChild(item);
+      });
+    }
+
+    function filterGallery(category) {
+      let filtered = adminGalleryImages;
+      if (category === 'hero') filtered = adminGalleryImages.filter(i => i.showInHero);
+      else if (category !== 'all') filtered = adminGalleryImages.filter(i => i.category === category);
+      renderAdminGallery(filtered);
+    }
+
+    async function uploadGalleryImage() {
+      const url        = document.getElementById('galleryImageUrl').value.trim();
+      const caption    = document.getElementById('galleryImageCaption').value.trim();
+      const category   = document.getElementById('galleryImageCategory').value;
+      const showInHero = document.getElementById('galleryShowInHero').checked;
+      const status     = document.getElementById('galleryUploadStatus');
+
+      if (!url) { status.textContent = 'Please enter an image URL.'; return; }
+
+      try {
+        status.style.color = '#6b7280';
+        status.textContent = 'Uploading...';
+        const res = await fetch(`${window.BACKEND_URL}/api/gallery`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${window.ADMIN_TOKEN}`
+          },
+          body: JSON.stringify({ schoolId: window.ADMIN_SCHOOLID, url, caption, category, showInHero })
+        });
+        if (res.ok) {
+          status.style.color = '#16a34a';
+          status.textContent = 'Image uploaded successfully!';
+          document.getElementById('galleryImageUrl').value = '';
+          document.getElementById('galleryImageCaption').value = '';
+          document.getElementById('galleryShowInHero').checked = false;
+          document.getElementById('galleryUploadForm').style.display = 'none';
+          loadAdminGallery();
+        } else {
+          const err = await res.json();
+          status.style.color = '#dc2626';
+          status.textContent = err.error || 'Upload failed. Please try again.';
+        }
+      } catch {
+        status.style.color = '#dc2626';
+        status.textContent = 'Network error. Please try again.';
+      }
+    }
+
+    async function deleteGalleryImage(id) {
+      if (!confirm('Delete this image? This cannot be undone.')) return;
+      try {
+        await fetch(`${window.BACKEND_URL}/api/gallery/${id}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${window.ADMIN_TOKEN}` }
+        });
+        loadAdminGallery();
+      } catch {
+        alert('Delete failed. Please try again.');
+      }
+    }
+
+    // ── SETTINGS SUB-NAV ─────────────────────
+    document.querySelectorAll('.settings-nav-btn[data-section]').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.settings-nav-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.settings-section').forEach(s => s.classList.remove('active'));
@@ -848,7 +988,8 @@
         document.getElementById('settings-' + btn.getAttribute('data-section')).classList.add('active');
       });
     });
- </script>
+  </script>
+
   <script src="/js/api.js"></script>
 </body>
 </html>

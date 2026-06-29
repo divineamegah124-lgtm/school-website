@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/css/style.css" />
   <link rel="stylesheet" href="/css/premium.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     rel="stylesheet" />
 </head>
 <body>
@@ -220,6 +220,32 @@
     </div>
   </div>
 
+  <!-- ============================
+     PUBLIC GALLERY SECTION
+     ============================ -->
+<div class="gallery-section-block content-section" style="max-width:1200px; margin: 0 auto; padding: 0 20px;">
+  <h2>School Gallery</h2>
+  <p class="gallery-subtitle">A glimpse into life at our school — facilities, events, and memorable moments.</p>
+
+  <div class="gallery-grid" id="publicGalleryGrid">
+    <!-- Loaded dynamically -->
+    <div class="gallery-empty-state" id="galleryEmptyState">No gallery images uploaded yet.</div>
+  </div>
+</div>
+
+<!-- Gallery Lightbox -->
+<div class="gallery-lightbox" id="galleryLightbox">
+  <span class="gallery-lb-close" id="galleryLbClose">&times;</span>
+  <div class="gallery-lightbox-img-wrap">
+    <button class="gallery-lb-arrow prev" id="galleryLbPrev">&#8249;</button>
+    <img class="gallery-lightbox-img" id="galleryLbImg" src="" alt="" />
+    <button class="gallery-lb-arrow next" id="galleryLbNext">&#8250;</button>
+  </div>
+  <div class="gallery-lightbox-caption" id="galleryLbCaption"></div>
+  <div class="gallery-lightbox-counter" id="galleryLbCounter"></div>
+  <div class="gallery-lightbox-dots" id="galleryLbDots"></div>
+</div>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
@@ -254,5 +280,7 @@
   <script src="/js/theme-loader.js"></script>
   <script src="/js/main.js"></script>
   <script src="/js/magazine.js"></script>
+  <script src="/js/scroll-animations.js"></script>
+  <script src="/js/gallery-public.js"></script>
 </body>
 </html>
