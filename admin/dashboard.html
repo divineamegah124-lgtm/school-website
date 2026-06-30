@@ -795,8 +795,12 @@
         <div class="dashboard-form-card" id="galleryUploadForm" style="display:none;">
           <h3>Upload New Image</h3>
           <div class="contact-form">
-            <label>Image URL</label>
-            <input type="url" id="galleryImageUrl" placeholder="https://..." />
+            <label>Choose Image</label>
+<input type="file" id="galleryImageFile" accept="image/*" />
+<div id="galleryImagePreview" style="display:none; margin-top:10px;">
+  <img id="galleryPreviewImg" src="" alt="Preview"
+    style="width:100%; max-height:220px; object-fit:cover; border-radius:6px; border:1px solid #e5e7eb;" />
+</div>
             <label>Caption (optional)</label>
             <input type="text" id="galleryImageCaption" placeholder="e.g. Science Laboratory" />
             <label>Category</label>
@@ -927,32 +931,54 @@
       renderAdminGallery(filtered);
     }
 
+    document.getElementById('galleryImageFile').addEventListener('change', function () {
+      const file = this.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        document.getElementById('galleryPreviewImg').src = e.target.result;
+        document.getElementById('galleryImagePreview').style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    });
+
     async function uploadGalleryImage() {
-      const url        = document.getElementById('galleryImageUrl').value.trim();
+      const fileInput  = document.getElementById('galleryImageFile');
       const caption    = document.getElementById('galleryImageCaption').value.trim();
       const category   = document.getElementById('galleryImageCategory').value;
       const showInHero = document.getElementById('galleryShowInHero').checked;
       const status     = document.getElementById('galleryUploadStatus');
 
-      if (!url) { status.textContent = 'Please enter an image URL.'; return; }
+      if (!fileInput.files[0]) {
+        status.style.color = '#dc2626';
+        status.textContent = 'Please select an image file.';
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('image', fileInput.files[0]);
+      formData.append('schoolId', window.ADMIN_SCHOOLID);
+      formData.append('caption', caption);
+      formData.append('category', category);
+      formData.append('showInHero', showInHero);
 
       try {
         status.style.color = '#6b7280';
         status.textContent = 'Uploading...';
+
         const res = await fetch(`${window.BACKEND_URL}/api/gallery`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${window.ADMIN_TOKEN}`
-          },
-          body: JSON.stringify({ schoolId: window.ADMIN_SCHOOLID, url, caption, category, showInHero })
+          headers: { 'Authorization': `Bearer ${window.ADMIN_TOKEN}` },
+          body: formData
         });
+
         if (res.ok) {
           status.style.color = '#16a34a';
           status.textContent = 'Image uploaded successfully!';
-          document.getElementById('galleryImageUrl').value = '';
+          fileInput.value = '';
           document.getElementById('galleryImageCaption').value = '';
           document.getElementById('galleryShowInHero').checked = false;
+          document.getElementById('galleryImagePreview').style.display = 'none';
           document.getElementById('galleryUploadForm').style.display = 'none';
           loadAdminGallery();
         } else {
