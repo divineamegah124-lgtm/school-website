@@ -113,41 +113,7 @@
             </div>
           </form>
         </div>
-        <div class="dashboard-list" id="facilitiesList">
-          <div class="dashboard-list-item">
-            <div class="list-item-info">
-              <h4>Library</h4>
-              <p>Main library building with reading halls and study rooms.</p>
-              <span class="list-item-date">5 photos uploaded</span>
-            </div>
-            <div class="list-item-actions">
-              <button class="btn-edit">Edit</button>
-              <button class="btn-delete">Delete</button>
-            </div>
-          </div>
-          <div class="dashboard-list-item">
-            <div class="list-item-info">
-              <h4>Science Laboratory</h4>
-              <p>Fully equipped laboratory for chemistry, biology, and physics.</p>
-              <span class="list-item-date">5 photos uploaded</span>
-            </div>
-            <div class="list-item-actions">
-              <button class="btn-edit">Edit</button>
-              <button class="btn-delete">Delete</button>
-            </div>
-          </div>
-          <div class="dashboard-list-item">
-            <div class="list-item-info">
-              <h4>Sports Field</h4>
-              <p>Multi-purpose sports field for football, athletics, and events.</p>
-              <span class="list-item-date">5 photos uploaded</span>
-            </div>
-            <div class="list-item-actions">
-              <button class="btn-edit">Edit</button>
-              <button class="btn-delete">Delete</button>
-            </div>
-          </div>
-        </div>
+        <div class="dashboard-list" id="facilitiesList"></div>
       </section>
 
       <!-- TAB 3: FEEDBACK & MESSAGES -->
@@ -879,6 +845,7 @@
       const panel = document.getElementById(`panel-${tab}`);
       if (panel) panel.classList.add('active');
       if (tab === 'gallery') loadAdminGallery();
+      if (tab === 'facilities') loadAdminFacilities();
     }
 
     document.querySelectorAll('.dashboard-tab[data-tab]').forEach(btn => {
@@ -1000,6 +967,113 @@
           headers: { 'Authorization': `Bearer ${window.ADMIN_TOKEN}` }
         });
         loadAdminGallery();
+      } catch {
+        alert('Delete failed. Please try again.');
+      }
+    }
+
+    // ── ADMIN FACILITIES ──────────────────────
+    let adminFacilities = [];
+
+    async function loadAdminFacilities() {
+      const list = document.getElementById('facilitiesList');
+      try {
+        const res = await fetch(`${window.BACKEND_URL}/api/facilities/${window.ADMIN_SCHOOLID}`, {
+          headers: { 'Authorization': `Bearer ${window.ADMIN_TOKEN}` }
+        });
+        adminFacilities = await res.json();
+        renderAdminFacilities(adminFacilities);
+      } catch (e) {
+        console.error('Facilities load failed', e);
+        if (list) list.innerHTML = '<div style="padding:16px; color:#9ca3af; font-size:0.85rem;">Failed to load facilities. Check your connection.</div>';
+      }
+    }
+
+    function renderAdminFacilities(facilities) {
+      const list = document.getElementById('facilitiesList');
+      if (!list) return;
+      list.innerHTML = '';
+      if (!facilities.length) {
+        list.innerHTML = '<div style="padding:16px; color:#9ca3af; font-size:0.85rem;">No facilities added yet. Click "+ New Facility" to begin.</div>';
+        return;
+      }
+      facilities.forEach(f => {
+        let photoCount = 0;
+        try { photoCount = JSON.parse(f.photos || '[]').length; } catch {}
+        const item = document.createElement('div');
+        item.classList.add('dashboard-list-item');
+        item.innerHTML = `
+          <div class="list-item-info">
+            <h4>${f.name}</h4>
+            <p>${f.description || ''}</p>
+            <span class="list-item-date">${photoCount} photo${photoCount === 1 ? '' : 's'} uploaded</span>
+          </div>
+          <div class="list-item-actions">
+            <button class="btn-delete" onclick="deleteFacility('${f.id}')">Delete</button>
+          </div>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    document.getElementById('newFacilityBtn').addEventListener('click', () => {
+      document.getElementById('facilityForm').style.display = 'block';
+    });
+
+    document.getElementById('cancelFacilityBtn').addEventListener('click', () => {
+      document.getElementById('facilityForm').style.display = 'none';
+      document.getElementById('facilityFormFields').reset();
+    });
+
+    document.getElementById('facilityFormFields').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name        = document.getElementById('facName').value.trim();
+      const description = document.getElementById('facDescription').value.trim();
+      const coverFile   = document.getElementById('facCover').files[0];
+      const photoFiles  = document.getElementById('facPhotos').files;
+
+      if (!name) {
+        alert('Facility name is required.');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('description', description);
+      if (coverFile) formData.append('coverImage', coverFile);
+      for (let i = 0; i < photoFiles.length; i++) {
+        formData.append('photos', photoFiles[i]);
+      }
+
+      try {
+        const res = await fetch(`${window.BACKEND_URL}/api/facilities`, {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${window.ADMIN_TOKEN}` },
+          body: formData
+        });
+
+        if (res.ok) {
+          document.getElementById('facilityFormFields').reset();
+          document.getElementById('facilityForm').style.display = 'none';
+          loadAdminFacilities();
+        } else {
+          const err = await res.json();
+          alert(err.error || 'Failed to save facility. Please try again.');
+        }
+      } catch {
+        alert('Network error. Please try again.');
+      }
+    });
+
+    async function deleteFacility(id) {
+      if (!confirm('Delete this facility? This cannot be undone.')) return;
+      try {
+        await fetch(`${window.BACKEND_URL}/api/facilities/${id}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${window.ADMIN_TOKEN}` }
+        });
+        loadAdminFacilities();
       } catch {
         alert('Delete failed. Please try again.');
       }
