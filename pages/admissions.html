@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admissions - Example Secondary School</title>
+  <title id="pageTitle">Admissions - Example Secondary School</title>
   <link rel="stylesheet" href="/css/style.css" />
   <link rel="stylesheet" href="/css/premium.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,8 +15,8 @@
   <header class="navbar" id="navbar">
     <div class="nav-container">
       <div class="logo">
-        <img src="/images/logo-placeholder.png" alt="School Logo" />
-        <span class="school-name">Example Secondary School</span>
+        <img src="/images/logo-placeholder.png" alt="School Logo" id="navLogo" />
+        <span class="school-name" id="navSchoolName">Example Secondary School</span>
       </div>
       <nav class="nav-links" id="navLinks">
         <a href="/index.html">Home</a>
@@ -151,10 +151,10 @@
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-col">
-        <h3>Example Secondary School</h3>
-        <p>Address: 123 School Road, Accra, Ghana</p>
-        <p>Phone: +233 000 000 000</p>
-        <p>Email: info@exampleschool.edu.gh</p>
+        <h3 id="footerSchoolName">Example Secondary School</h3>
+        <p id="footerAddress">Address: 123 School Road, Accra, Ghana</p>
+        <p id="footerPhone">Phone: +233 000 000 000</p>
+        <p id="footerEmail">Email: info@exampleschool.edu.gh</p>
       </div>
       <div class="footer-col">
         <h3>Quick Links</h3>
@@ -167,18 +167,19 @@
       </div>
       <div class="footer-col">
         <h3>Follow Us</h3>
-        <a href="#">Facebook</a>
-        <a href="#">Twitter/X</a>
-        <a href="#">Instagram</a>
-        <a href="#">YouTube</a>
+        <a href="#" id="socialFacebook">Facebook</a>
+        <a href="#" id="socialTwitter">Twitter/X</a>
+        <a href="#" id="socialInstagram">Instagram</a>
+        <a href="#" id="socialYoutube">YouTube</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 Example Secondary School. All rights reserved.</p>
+      <p id="footerCopyright">&copy; 2026 Example Secondary School. All rights reserved.</p>
     </div>
   </footer>
 
   <script src="/js/site-config.js"></script>
+  <script src="/js/site-loader.js"></script>
   <script src="/js/theme-loader.js"></script>
   <script src="/js/main.js"></script>
   <script src="/js/admissions-page.js"></script>

@@ -1,25 +1,15 @@
 // admissions-page.js
-// Loads all admissions data from backend API with localStorage fallback
+// Loads all admissions data from backend API
 
 document.addEventListener('DOMContentLoaded', async () => {
 
   let admissionsData = {};
   try {
     admissionsData = await getAdmissions();
-  } catch {
-    const stored = localStorage.getItem('school-admissions');
-    admissionsData = stored ? JSON.parse(stored) : {};
+  } catch (e) {
+    console.error('Failed to load admissions data', e);
+    admissionsData = {};
   }
-
-  const requirements = JSON.parse(
-    localStorage.getItem('school-admissions-requirements') || '[]'
-  );
-  const processSteps = JSON.parse(
-    localStorage.getItem('school-admissions-steps') || '[]'
-  );
-  const admissionForm = JSON.parse(
-    localStorage.getItem('school-admission-form') || 'null'
-  );
 
   // --- Admissions status badge ---
   const badge = document.getElementById('admissionsStatusBadge');
@@ -59,50 +49,74 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // --- Requirements list ---
-  if (requirements.length > 0) {
-    const reqList = document.getElementById('requirementsList');
-    if (reqList) {
-      reqList.innerHTML = requirements.map(req => `<li>${req.text}</li>`).join('');
+  if (admissionsData.requirements) {
+    try {
+      const requirements = typeof admissionsData.requirements === 'string'
+        ? JSON.parse(admissionsData.requirements)
+        : admissionsData.requirements;
+      if (Array.isArray(requirements) && requirements.length > 0) {
+        const reqList = document.getElementById('requirementsList');
+        if (reqList) {
+          reqList.innerHTML = requirements.map(req =>
+            `<li>${typeof req === 'string' ? req : req.text}</li>`
+          ).join('');
+        }
+      }
+    } catch (e) {
+      console.error('Failed to parse requirements', e);
     }
   }
 
   // --- Process steps ---
-  if (processSteps.length > 0) {
-    const stepsContainer = document.getElementById('processSteps');
-    if (stepsContainer) {
-      stepsContainer.innerHTML = processSteps.map((step, idx) => `
-        <div class="step-card">
-          <div class="step-number">${idx + 1}</div>
-          <h3>${step.title}</h3>
-          <p>${step.description}</p>
-        </div>
-      `).join('');
+  if (admissionsData.processSteps) {
+    try {
+      const steps = typeof admissionsData.processSteps === 'string'
+        ? JSON.parse(admissionsData.processSteps)
+        : admissionsData.processSteps;
+      if (Array.isArray(steps) && steps.length > 0) {
+        const stepsContainer = document.getElementById('processSteps');
+        if (stepsContainer) {
+          stepsContainer.innerHTML = steps.map((step, idx) => `
+            <div class="step-card">
+              <div class="step-number">${idx + 1}</div>
+              <h3>${step.title}</h3>
+              <p>${step.description}</p>
+            </div>
+          `).join('');
+        }
+      }
+    } catch (e) {
+      console.error('Failed to parse process steps', e);
     }
   }
 
   // --- Fees table ---
   if (admissionsData.fees) {
-    const f = typeof admissionsData.fees === 'string'
-      ? JSON.parse(admissionsData.fees)
-      : admissionsData.fees;
-    const set = (id, val) => {
-      const el = document.getElementById(id);
-      if (el && val) el.textContent = val;
-    };
-    set('tuitionFeeCell', f.tuitionFee);
-    set('admissionFeeCell', f.admissionFee);
-    set('boardingFeeCell', f.boardingFee);
-    set('booksMaterielsCell', f.booksAndMaterials);
-    set('feesNote', f.feesNote);
+    try {
+      const f = typeof admissionsData.fees === 'string'
+        ? JSON.parse(admissionsData.fees)
+        : admissionsData.fees;
+      const set = (id, val) => {
+        const el = document.getElementById(id);
+        if (el && val) el.textContent = val;
+      };
+      set('tuitionFeeCell', f.tuitionFee);
+      set('admissionFeeCell', f.admissionFee);
+      set('boardingFeeCell', f.boardingFee);
+      set('booksMaterielsCell', f.booksAndMaterials);
+      set('feesNote', f.feesNote);
+    } catch (e) {
+      console.error('Failed to parse fees', e);
+    }
   }
 
   // --- Download Application Form button ---
   const downloadBtn = document.getElementById('downloadFormBtn');
   const noFormMsg = document.getElementById('noFormMsg');
-  if (admissionForm && admissionForm.fileData) {
+  if (admissionsData.formUrl) {
     if (downloadBtn) {
-      downloadBtn.href = admissionForm.fileData;
-      downloadBtn.download = admissionForm.fileName || 'Application-Form';
+      downloadBtn.href = admissionsData.formUrl;
+      downloadBtn.download = admissionsData.formFileName || 'Application-Form';
       downloadBtn.style.display = 'inline-block';
     }
     if (noFormMsg) noFormMsg.style.display = 'none';
