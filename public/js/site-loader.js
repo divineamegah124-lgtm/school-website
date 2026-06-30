@@ -31,7 +31,12 @@
 
   function applySettings(data) {
     // Page title
-    if (data.name) document.title = data.name;
+    if (data.name) {
+  const titleEl = document.getElementById('pageTitle');
+  const currentTitle = titleEl ? titleEl.textContent : document.title;
+  const pageLabel = currentTitle.includes(' - ') ? currentTitle.split(' - ')[0] : '';
+  document.title = pageLabel ? `${pageLabel} - ${data.name}` : data.name;
+}
 
     // Navbar
     setText('navSchoolName', data.name);

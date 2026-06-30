@@ -1,28 +1,30 @@
 // about-page.js
-// Populates the About page dynamically from backend API with localStorage fallback
+// Populates the About page dynamically from backend API
 
 (async function () {
+  const API = window.API_BASE || 'https://school-website-backend-production.up.railway.app';
+  const schoolId = window.SCHOOL_ID || 'demo';
 
   // -------------------------------------------------------
-  // MISSION
+  // MISSION / VISION / HISTORY — fetch from settings API
   // -------------------------------------------------------
-  const mission = localStorage.getItem('school-mission');
-  const missionEl = document.getElementById('aboutMission');
-  if (mission && missionEl) missionEl.textContent = mission;
+  try {
+    const res = await fetch(`${API}/api/settings/${schoolId}`);
+    if (res.ok) {
+      const data = await res.json();
 
-  // -------------------------------------------------------
-  // VISION
-  // -------------------------------------------------------
-  const vision = localStorage.getItem('school-vision');
-  const visionEl = document.getElementById('aboutVision');
-  if (vision && visionEl) visionEl.textContent = vision;
+      const missionEl = document.getElementById('aboutMission');
+      if (missionEl && data.mission) missionEl.textContent = data.mission;
 
-  // -------------------------------------------------------
-  // HISTORY
-  // -------------------------------------------------------
-  const history = localStorage.getItem('school-history');
-  const historyEl = document.getElementById('aboutHistory');
-  if (history && historyEl) historyEl.textContent = history;
+      const visionEl = document.getElementById('aboutVision');
+      if (visionEl && data.vision) visionEl.textContent = data.vision;
+
+      const historyEl = document.getElementById('aboutHistory');
+      if (historyEl && data.history) historyEl.textContent = data.history;
+    }
+  } catch (e) {
+    console.error('Failed to load about page content', e);
+  }
 
   // -------------------------------------------------------
   // LEADERSHIP GRID
@@ -34,8 +36,7 @@
   try {
     leaders = await getLeadership();
   } catch {
-    const stored = localStorage.getItem('school-leadership');
-    leaders = stored ? JSON.parse(stored) : [];
+    leaders = [];
   }
 
   const active = leaders.filter(l => l.name || l.role);
