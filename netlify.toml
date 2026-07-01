@@ -33,11 +33,6 @@
   status = 200
 
 [[redirects]]
-  from = "/magazine.html"
-  to = "/pages/magazine.html"
-  status = 200
-
-[[redirects]]
   from = "/contact.html"
   to = "/pages/contact.html"
   status = 200
@@ -60,6 +55,11 @@
 [[redirects]]
   from = "/downloads.html"
   to = "/pages/downloads.html"
+  status = 200
+
+[[redirects]]
+  from = "/gallery.html"
+  to = "/pages/gallery.html"
   status = 200
 
 [[redirects]]
