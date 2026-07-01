@@ -30,7 +30,6 @@
       <button class="dashboard-tab active" data-tab="announcements">Announcements</button>
       <button class="dashboard-tab" data-tab="facilities">Facilities</button>
       <button class="dashboard-tab" data-tab="feedback">Feedback</button>
-      <button class="dashboard-tab" data-tab="drive">Google Drive</button>
       <button class="dashboard-tab" data-tab="events">Events</button>
       <button class="dashboard-tab" data-tab="staff">Staff Directory</button>
       <button class="dashboard-tab" data-tab="admissions">Admissions Control</button>
@@ -186,41 +185,6 @@
         </div>
       </section>
 
-      <!-- TAB 4: GOOGLE DRIVE -->
-      <section class="dashboard-panel" id="panel-drive">
-        <div class="panel-header">
-          <h2>Google Drive Connection</h2>
-        </div>
-        <div class="dashboard-form-card">
-          <h3>Connection Status</h3>
-          <div class="drive-status-row">
-            <span class="status-badge unresolved" id="driveStatusBadge">Not Connected</span>
-            <button class="btn-primary" id="connectDriveBtn">Connect Google Drive</button>
-          </div>
-          <p class="drive-help-text">Connect the school's Google Drive account to automatically display photos and videos on the Magazine page.</p>
-        </div>
-        <div class="dashboard-form-card">
-          <h3>Drive Folder Settings</h3>
-          <form class="contact-form" id="driveFolderForm">
-            <label for="driveFolderId">Magazine Root Folder ID or Link</label>
-            <input type="text" id="driveFolderId" name="folderId" placeholder="Paste Google Drive folder link here" />
-            <div class="form-buttons">
-              <button type="submit" class="btn-primary">Save Folder Settings</button>
-              <button type="button" class="btn-secondary" id="testDriveConnectionBtn">Test Connection</button>
-            </div>
-            <p class="form-status" id="driveFormStatus"></p>
-          </form>
-        </div>
-        <div class="dashboard-form-card">
-          <h3>Folder Structure Guide</h3>
-          <ul class="info-list">
-            <li>Create a main folder for the Magazine (e.g. "School Magazine")</li>
-            <li>Inside it, create a folder for each year (e.g. "2026", "2025")</li>
-            <li>Inside each year folder, create a folder per event (e.g. "Sports Day", "Graduation")</li>
-            <li>Upload photos and videos directly into the event folders</li>
-          </ul>
-        </div>
-      </section>
 
       <!-- TAB 5: EVENTS -->
       <section class="dashboard-panel" id="panel-events">
@@ -512,11 +476,6 @@
                   <label>Facility Detail</label>
                   <input type="file" accept="image/*" class="page-header-upload" data-key="school-header-facility" />
                   <p class="stats-input-hint" id="hint-school-header-facility">No image uploaded</p>
-                </div>
-                <div>
-                  <label>Magazine</label>
-                  <input type="file" accept="image/*" class="page-header-upload" data-key="school-header-magazine" />
-                  <p class="stats-input-hint" id="hint-school-header-magazine">No image uploaded</p>
                 </div>
                 <div>
                   <label>Contact</label>
@@ -823,7 +782,6 @@
 
   <script src="/js/admin-dashboard.js"></script>
   <script src="/js/color-theme.js"></script>
-  <script src="/js/notices-admin.js"></script>
 
   <script>
     // ── LOGOUT ────────────────────────────────

@@ -34,7 +34,7 @@
   const contactStatus = document.getElementById('contactStatus');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const name    = document.getElementById('conName').value.trim();
@@ -45,27 +45,27 @@
 
       if (!name || !email || !subject || !message) return;
 
-      const stored   = localStorage.getItem('school-contact-messages');
-      const messages = stored ? JSON.parse(stored) : [];
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
 
-      messages.unshift({
-        id:      Date.now(),
-        name, email,
-        phone:   phone || 'Not provided',
-        subject, message,
-        date:    new Date().toISOString(),
-        read:    false
-      });
+      try {
+        await submitFeedback({ name, email, phone, subject, message });
 
-      localStorage.setItem('school-contact-messages', JSON.stringify(messages));
+        if (contactStatus) {
+          contactStatus.textContent = 'Message sent. We will get back to you shortly.';
+          contactStatus.style.color = '#14532d';
+          setTimeout(() => { contactStatus.textContent = ''; }, 5000);
+        }
 
-      if (contactStatus) {
-        contactStatus.textContent = 'Message sent. We will get back to you shortly.';
-        contactStatus.style.color = '#14532d';
-        setTimeout(() => { contactStatus.textContent = ''; }, 5000);
+        contactForm.reset();
+      } catch (err) {
+        if (contactStatus) {
+          contactStatus.textContent = 'Could not send message. Please try again.';
+          contactStatus.style.color = '#dc2626';
+        }
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
       }
-
-      contactForm.reset();
     });
   }
 

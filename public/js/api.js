@@ -3,7 +3,7 @@
 // Handles all backend communication with localStorage fallback
 
 const API_BASE = 'https://school-website-backend-production.up.railway.app/api';
-const SCHOOL_ID = 'PRESEC';
+const SCHOOL_ID = window.ADMIN_SCHOOLID || localStorage.getItem('admin-schoolId') || 'PRESEC';
 
 // Get JWT token from localStorage
 function getToken() {

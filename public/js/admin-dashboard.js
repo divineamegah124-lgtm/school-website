@@ -122,70 +122,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 });
 
-// -------------------------------------------------------
-// TAB 2: FACILITIES (localStorage only — no backend table)
-// -------------------------------------------------------
-document.addEventListener('DOMContentLoaded', () => {
-  const newFacilityBtn     = document.getElementById('newFacilityBtn');
-  const facilityForm       = document.getElementById('facilityForm');
-  const cancelFacilityBtn  = document.getElementById('cancelFacilityBtn');
-  const facilityFormFields = document.getElementById('facilityFormFields');
-  if (!newFacilityBtn) return;
-
-  newFacilityBtn.addEventListener('click', () => {
-    facilityForm.style.display = 'block';
-    newFacilityBtn.style.display = 'none';
-  });
-
-  cancelFacilityBtn.addEventListener('click', () => {
-    facilityForm.style.display = 'none';
-    newFacilityBtn.style.display = 'inline-block';
-    facilityFormFields.reset();
-  });
-
-  facilityFormFields.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name        = document.getElementById('facName').value.trim();
-    const description = document.getElementById('facDescription').value.trim();
-    if (!name || !description) return;
-
-    const facilities = JSON.parse(localStorage.getItem('school-facilities') || '[]');
-    facilities.unshift({ id: Date.now(), name, description });
-    localStorage.setItem('school-facilities', JSON.stringify(facilities));
-
-    facilityForm.style.display = 'none';
-    newFacilityBtn.style.display = 'inline-block';
-    facilityFormFields.reset();
-    loadFacilities();
-  });
-
-  function loadFacilities() {
-    const list = document.getElementById('facilitiesList');
-    const facilities = JSON.parse(localStorage.getItem('school-facilities') || '[]');
-    if (facilities.length === 0) return;
-    list.innerHTML = facilities.map(f => `
-      <div class="dashboard-list-item" data-id="${f.id}">
-        <div class="list-item-info">
-          <h4>${f.name}</h4>
-          <p>${f.description}</p>
-        </div>
-        <div class="list-item-actions">
-          <button class="btn-delete" data-id="${f.id}">Delete</button>
-        </div>
-      </div>
-    `).join('');
-
-    list.querySelectorAll('.btn-delete').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const updated = facilities.filter(f => f.id != btn.dataset.id);
-        localStorage.setItem('school-facilities', JSON.stringify(updated));
-        loadFacilities();
-      });
-    });
-  }
-
-  loadFacilities();
-});
 
 // -------------------------------------------------------
 // TAB 3: FEEDBACK
@@ -705,23 +641,43 @@ document.addEventListener('DOMContentLoaded', async () => {
     noticeFormFields.reset();
   });
 
-  noticeFormFields.addEventListener('submit', async (e) => {
+noticeFormFields.addEventListener('submit', async (e) => {
     e.preventDefault();
     const title       = document.getElementById('noticeTitle').value.trim();
     const category    = document.getElementById('noticeCategory').value;
     const description = document.getElementById('noticeDescription').value.trim();
+    const fileInput   = document.getElementById('noticeFile');
+    const file        = fileInput.files[0];
     const status      = document.getElementById('noticeFormStatus');
     if (!title || !category) return;
 
-    try {
-      await createNotice({ title, category, description });
-      noticeForm.style.display = 'none';
-      newNoticeBtn.style.display = 'inline-block';
-      noticeFormFields.reset();
-      loadNotices();
-    } catch (err) {
-      if (status) status.textContent = 'Failed: ' + err.message;
+    if (!file) {
+      if (status) status.textContent = 'Please select a file to upload.';
+      return;
     }
+
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      try {
+        await createNotice({
+          title,
+          category,
+          description,
+          fileData: event.target.result // base64 string
+        });
+        noticeForm.style.display = 'none';
+        newNoticeBtn.style.display = 'inline-block';
+        noticeFormFields.reset();
+        if (status) status.textContent = '';
+        loadNotices();
+      } catch (err) {
+        if (status) status.textContent = 'Failed: ' + err.message;
+      }
+    };
+    reader.onerror = () => {
+      if (status) status.textContent = 'Could not read file. Please try again.';
+    };
+    reader.readAsDataURL(file);
   });
 
   // Filter
