@@ -130,13 +130,5 @@
     }
   }, { passive: true });
 
-  document.addEventListener('DOMContentLoaded', () => {
-    // Re-read SCHOOL_ID after all scripts have loaded
-    const resolvedSchoolId = window.SCHOOL_ID || 'DIVINE';
-    if (resolvedSchoolId !== schoolId) {
-      // Update and reload with correct schoolId
-      window._gallerySchoolId = resolvedSchoolId;
-    }
-    loadGallery();
-  });
+  document.addEventListener('DOMContentLoaded', loadGallery);
 })();
