@@ -5,12 +5,12 @@
 
 (function () {
   const API = window.API_BASE || 'https://school-website-backend-production.up.railway.app';
-  const schoolId = window.SCHOOL_ID || 'demo';
 
   let images = [];
   let currentIndex = 0;
 
   async function loadGallery() {
+    const schoolId = window.SCHOOL_ID || 'DIVINE';
     const grid = document.getElementById('publicGalleryGrid');
     const emptyState = document.getElementById('galleryEmptyState');
     if (!grid) return;
@@ -130,9 +130,13 @@
     }
   }, { passive: true });
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadGallery);
-  } else {
+  document.addEventListener('DOMContentLoaded', () => {
+    // Re-read SCHOOL_ID after all scripts have loaded
+    const resolvedSchoolId = window.SCHOOL_ID || 'DIVINE';
+    if (resolvedSchoolId !== schoolId) {
+      // Update and reload with correct schoolId
+      window._gallerySchoolId = resolvedSchoolId;
+    }
     loadGallery();
-  }
+  });
 })();

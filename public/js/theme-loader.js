@@ -127,12 +127,12 @@
 
     // Cover photo
     if (s.coverPhoto) {
-      const heroSection = document.querySelector('.hero');
-      if (heroSection) {
-        heroSection.style.backgroundImage    = `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('${s.coverPhoto}')`;
-        heroSection.style.backgroundSize     = 'cover';
-        heroSection.style.backgroundPosition = 'center';
-        heroSection.style.backgroundRepeat   = 'no-repeat';
+      const heroSlide = document.getElementById('heroMainSlide');
+      if (heroSlide) {
+        heroSlide.style.backgroundImage    = `url('${s.coverPhoto}')`;
+        heroSlide.style.backgroundSize     = 'cover';
+        heroSlide.style.backgroundPosition = 'center';
+        heroSlide.style.backgroundRepeat   = 'no-repeat';
       }
     }
 

@@ -458,8 +458,20 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (status) status.textContent = 'Please fill in all fields.';
       return;
     }
+
+    // Read photo as base64 if selected
+    let photo = '';
+    const photoFile = document.getElementById('staffPhoto');
+    if (photoFile && photoFile.files[0]) {
+      photo = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e) => resolve(e.target.result);
+        reader.readAsDataURL(photoFile.files[0]);
+      });
+    }
+
     try {
-      await createStaff({ name, role, department, email });
+      await createStaff({ name, role, department, email, photo });
       staffForm.style.display = 'none';
       newStaffBtn.style.display = 'inline-block';
       document.getElementById('staffFormFields').reset();
@@ -786,4 +798,242 @@ document.addEventListener('DOMContentLoaded', async () => {
       document.getElementById('settings-' + btn.getAttribute('data-section')).classList.add('active');
     });
   });
+});
+// -------------------------------------------------------
+// TAB 9: SCHOOL SETTINGS — MAIN FORM
+// -------------------------------------------------------
+document.addEventListener('DOMContentLoaded', async () => {
+  const settingsForm = document.getElementById('settingsForm');
+  if (!settingsForm) return;
+
+  // Load existing settings and populate form
+  try {
+    const data = await getSettings();
+    if (data) {
+      if (data.name)            document.getElementById('setSchoolName').value    = data.name;
+      if (data.motto)           document.getElementById('setMotto').value          = data.motto;
+      if (data.welcomeHeadline) document.getElementById('setWelcomeHeadline').value = data.welcomeHeadline;
+      if (data.address)         document.getElementById('setAddress').value        = data.address;
+      if (data.phone)           document.getElementById('setPhone').value          = data.phone;
+      if (data.email)           document.getElementById('setEmail').value          = data.email;
+      if (data.facebook)        document.getElementById('setFacebook').value       = data.facebook;
+      if (data.twitter)         document.getElementById('setTwitter').value        = data.twitter;
+      if (data.instagram)       document.getElementById('setInstagram').value      = data.instagram;
+      if (data.youtube)         document.getElementById('setYoutube').value        = data.youtube;
+      if (data.students)        document.getElementById('setStudents').value       = data.students;
+      if (data.staffCount)      document.getElementById('setStaff').value          = data.staffCount;
+      if (data.yearEstablished) document.getElementById('setYearEstablished').value = data.yearEstablished;
+      if (data.mission)         document.getElementById('setMission').value        = data.mission;
+      if (data.vision)          document.getElementById('setVision').value         = data.vision;
+      if (data.history)         document.getElementById('setHistory').value        = data.history;
+
+      // Show logo preview if saved
+      if (data.logo) {
+        const previewRow = document.getElementById('logoPreviewRow');
+        const previewImg = document.getElementById('logoPreviewImg');
+        if (previewRow) previewRow.style.display = 'flex';
+        if (previewImg) previewImg.src = data.logo;
+
+        // Also update dashboard topbar logo
+        const adminLogoImg = document.querySelector('.dashboard-logo img');
+        if (adminLogoImg) adminLogoImg.src = data.logo;
+      }
+
+      // Show cover photo preview if saved
+      if (data.coverPhoto) {
+        const coverRow = document.getElementById('coverPreviewRow');
+        const coverImg = document.getElementById('coverPreviewImg');
+        if (coverRow) coverRow.style.display = 'flex';
+        if (coverImg) coverImg.src = data.coverPhoto;
+      }
+    }
+  } catch (err) {
+    console.error('Failed to load settings', err);
+  }
+
+  // Logo file input preview
+  const logoInput = document.getElementById('setLogo');
+  if (logoInput) {
+    logoInput.addEventListener('change', () => {
+      const file = logoInput.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const previewRow = document.getElementById('logoPreviewRow');
+        const previewImg = document.getElementById('logoPreviewImg');
+        if (previewRow) previewRow.style.display = 'flex';
+        if (previewImg) previewImg.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Cover photo file input preview
+  const coverInput = document.getElementById('setCoverPhoto');
+  if (coverInput) {
+    coverInput.addEventListener('change', () => {
+      const file = coverInput.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const coverRow = document.getElementById('coverPreviewRow');
+        const coverImg = document.getElementById('coverPreviewImg');
+        if (coverRow) coverRow.style.display = 'flex';
+        if (coverImg) coverImg.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Settings form submit
+  settingsForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const statusEl = document.getElementById('settingsFormStatus');
+
+    // Read logo as base64 if a new file was selected
+    const logoFile  = document.getElementById('setLogo').files[0];
+    const coverFile = document.getElementById('setCoverPhoto').files[0];
+
+    async function readFileAsBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload  = (e) => resolve(e.target.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    try {
+      if (statusEl) { statusEl.textContent = 'Saving...'; statusEl.style.color = '#6b7280'; }
+
+      const payload = {
+        name:             document.getElementById('setSchoolName').value.trim(),
+        motto:            document.getElementById('setMotto').value.trim(),
+        welcomeHeadline:  document.getElementById('setWelcomeHeadline').value.trim(),
+        address:          document.getElementById('setAddress').value.trim(),
+        phone:            document.getElementById('setPhone').value.trim(),
+        email:            document.getElementById('setEmail').value.trim(),
+        facebook:         document.getElementById('setFacebook').value.trim(),
+        twitter:          document.getElementById('setTwitter').value.trim(),
+        instagram:        document.getElementById('setInstagram').value.trim(),
+        youtube:          document.getElementById('setYoutube').value.trim(),
+        students:         document.getElementById('setStudents').value,
+        staffCount:       document.getElementById('setStaff').value,
+        yearEstablished:  document.getElementById('setYearEstablished').value,
+        mission:          document.getElementById('setMission').value.trim(),
+        vision:           document.getElementById('setVision').value.trim(),
+        history:          document.getElementById('setHistory').value.trim(),
+      };
+
+      // Convert logo to base64 if new file selected
+      if (logoFile) {
+        payload.logo = await readFileAsBase64(logoFile);
+      }
+
+      // Convert cover photo to base64 if new file selected
+      if (coverFile) {
+        payload.coverPhoto = await readFileAsBase64(coverFile);
+      }
+
+      await updateSettings(payload);
+
+      // Update dashboard topbar immediately
+      if (payload.name) {
+        const adminLogoSpan = document.querySelector('.dashboard-logo span');
+        if (adminLogoSpan) adminLogoSpan.textContent = payload.name + ' — Admin';
+      }
+      if (payload.logo) {
+        const adminLogoImg = document.querySelector('.dashboard-logo img');
+        if (adminLogoImg) adminLogoImg.src = payload.logo;
+      }
+
+      if (statusEl) {
+        statusEl.textContent = 'Settings saved successfully.';
+        statusEl.style.color = '#16a34a';
+        setTimeout(() => { statusEl.textContent = ''; }, 4000);
+      }
+
+    } catch (err) {
+      if (statusEl) {
+        statusEl.textContent = 'Failed to save: ' + err.message;
+        statusEl.style.color = '#dc2626';
+      }
+    }
+  });
+});
+
+// -------------------------------------------------------
+// TAB 9: SCHOOL SETTINGS — LEADERSHIP PHOTO SUPPORT
+// -------------------------------------------------------
+document.addEventListener('DOMContentLoaded', async () => {
+  const leadershipContainer = document.getElementById('leadershipFormContainer');
+  if (!leadershipContainer) return;
+
+  // Override renderLeadershipForms to include photo field
+  window.renderLeadershipFormsWithPhoto = function(leaders) {
+    leadershipContainer.innerHTML = leaders.map((l, i) => `
+      <div class="dashboard-form-card" style="margin-bottom:12px;" data-index="${i}">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+          <h4 style="margin:0; font-size:0.88rem;">Leader ${i + 1}</h4>
+          <button type="button" class="btn-delete remove-leader-btn" data-index="${i}">Remove</button>
+        </div>
+        <label>Name</label>
+        <input type="text" class="leader-name" value="${l.name || ''}" style="margin-bottom:8px;" />
+        <label>Role / Title</label>
+        <input type="text" class="leader-role" value="${l.role || ''}" style="margin-bottom:8px;" />
+        <label>Photo</label>
+        <input type="file" class="leader-photo-file" accept="image/*" style="margin-bottom:6px;" />
+        ${l.photo ? `<img src="${l.photo}" alt="Photo" style="width:60px;height:60px;object-fit:cover;border-radius:50%;border:2px solid #d1d5db;margin-top:4px;" />` : ''}
+      </div>
+    `).join('');
+
+    leadershipContainer.querySelectorAll('.remove-leader-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        leaders.splice(btn.dataset.index, 1);
+        window.renderLeadershipFormsWithPhoto(leaders);
+      });
+    });
+
+    return leaders;
+  };
+});
+
+// -------------------------------------------------------
+// TAB 6: STAFF — PHOTO SUPPORT
+// -------------------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+  // Add photo field to staff form in HTML dynamically
+  const staffFormFields = document.getElementById('staffFormFields');
+  if (!staffFormFields) return;
+
+  // Insert photo field before the form buttons
+  const formButtons = staffFormFields.querySelector('.form-buttons');
+  if (formButtons && !document.getElementById('staffPhotoField')) {
+    const photoDiv = document.createElement('div');
+    photoDiv.id = 'staffPhotoField';
+    photoDiv.innerHTML = `
+      <label style="display:block; font-size:0.78rem; font-weight:600; color:#374151; text-transform:uppercase; letter-spacing:0.3px; margin-bottom:6px; margin-top:12px;">
+        Photo (optional)
+      </label>
+      <input type="file" id="staffPhoto" accept="image/*"
+        style="width:100%; padding:8px; border:1px solid #d1d5db; border-radius:2px; font-size:0.85rem;" />
+      <div id="staffPhotoPreview" style="display:none; margin-top:8px;">
+        <img id="staffPhotoImg" src="" alt="Preview"
+          style="width:60px; height:60px; object-fit:cover; border-radius:50%; border:2px solid #d1d5db;" />
+      </div>
+    `;
+    staffFormFields.insertBefore(photoDiv, formButtons);
+
+    // Preview on file select
+    document.getElementById('staffPhoto').addEventListener('change', function() {
+      const file = this.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        document.getElementById('staffPhotoImg').src = e.target.result;
+        document.getElementById('staffPhotoPreview').style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    });
+  }
 });
